@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relațiile dintre clase în POO</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header id="top">
+    <nav>
+            <a href="index.html">CV-ul meu</a>
+            <a href="sarcini-practica.html">Sarcini Practică</a>
+            <a href="relatii-POO.html">Relații POO</a>
+            <a href="experiente.html">Experiențe Acumulate</a>
+            <a href="planificare.html">Planificare</a>
+            <a href="declaratie.html">Declarație</a>
+    </nav>
+    <div class="continut-antet">
+        <div class="pictograma-pagina"><i class="fa-solid fa-diagram-project"></i></div>
+        <h1>Relațiile dintre clase în POO</h1>
+        <p class="subtitlu">Programare Orientată pe Obiecte · C#</p>
+        <div class="fir-navigare-antet">
+            <a href="index.html"><i class="fa-solid fa-house"></i> Acasă</a>
+            <span>/</span>
+            <span>Relații POO</span>
+        </div>
+    </div>
+</header>
+
+<section>
+
+    <div class="banner-citat">
+        <p>
+            În programarea orientată pe obiecte, un sistem nu este doar o colecție de clase izolate.<br>
+            Un program real este o <strong>rețea de relații între obiecte</strong>.
+            <span class="evidentiat"> Un programator profesionist petrece mai mult timp proiectând relațiile decât scriind codul.</span>
+        </p>
+        <div class="etichete">
+            <span class="eticheta"><i class="fa-solid fa-arrow-up"></i> Moștenire</span>
+            <span class="eticheta"><i class="fa-solid fa-box-open"></i> Agregare</span>
+            <span class="eticheta"><i class="fa-solid fa-cubes"></i> Compunere</span>
+            <span class="eticheta"><i class="fa-solid fa-link"></i> Dependență</span>
+        </div>
+    </div>
+
+    
+    <div class="bloc-relatie">
+        <div class="titlu-bloc">
+            <h2>
+                <span class="insigna-pictograma"><i class="fa-solid fa-arrow-up"></i></span>
+                1. Moștenire (Inheritance)
+            </h2>
+        </div>
+        <div class="continut-bloc">
+            <div class="meta-relatie">
+                <span class="insigna-meta">„este un tip de"</span>
+                <span class="insigna-meta verde">IS-A</span>
+                <span class="insigna-meta">Cuvânt cheie: <code>:</code></span>
+            </div>
+
+            <p>
+                Moștenirea permite unei clase <strong>derivate</strong> (child) să preia toate câmpurile, proprietățile și metodele
+                clasei <strong>de bază</strong> (parent) și să le extindă sau suprascrie. Aceasta elimină duplicarea codului și
+                creează o ierarhie logică între entități.
+            </p>
+
+            <ul>
+                <li>Clasa derivată <strong>moștenește</strong> toți membrii non-privați ai clasei de bază.</li>
+                <li>Se poate suprascrie comportamentul cu <code>override</code> (în combinație cu <code>virtual</code>).</li>
+                <li>C# suportă <strong>moștenire unică</strong> (o clasă poate extinde o singură clasă), dar interfețe multiple.</li>
+            </ul>
+
+            <div class="diagrama-uml">
+                <div class="clasa-uml">
+                    <div class="nume-clasa">Animal</div>
+                    <div class="corp-clasa">+ Nume : string<br>+ Respira()</div>
+                </div>
+                <div class="sageata-uml">
+                    <span class="eticheta-sageata">moștenire</span>
+                    <span class="linie-sageata">▲─────</span>
+                </div>
+                <div class="clasa-uml">
+                    <div class="nume-clasa">Caine</div>
+                    <div class="corp-clasa">+ Rasa : string<br>+ Latra()</div>
+                </div>
+                <div class="sageata-uml">
+                    <span class="eticheta-sageata">moștenire</span>
+                    <span class="linie-sageata">▲─────</span>
+                </div>
+                <div class="clasa-uml">
+                    <div class="nume-clasa">CainePolitist</div>
+                    <div class="corp-clasa">+ NumarInsigna : int<br>+ Patruleaza()</div>
+                </div>
+            </div>
+
+            <div class="container-cod">
+                <div class="antet-cod">
+                    <div class="puncte"><span></span><span></span><span></span></div>
+                    <span class="eticheta-limbaj">C#</span>
+                </div>
+                <pre class="zona-text-cod"><span class="comentariu">// Clasa de bază</span>
+<span class="cuvant-cheie">public class</span> <span class="clasa">Animal</span>
+{
+    <span class="cuvant-cheie">public string</span> <span class="proprietate">Nume</span> { <span class="cuvant-cheie">get</span>; <span class="cuvant-cheie">set</span>; }
+
+    <span class="cuvant-cheie">public virtual void</span> <span class="functie">FaSunet</span>()
+    {
+        Console.WriteLine(<span class="sir">$"{Nume} scoate un sunet."</span>);
+    }
+}
+
+<span class="comentariu">// Clasa derivată — „Câinele ESTE UN Animal"</span>
+<span class="cuvant-cheie">public class</span> <span class="clasa">Caine</span> : <span class="clasa">Animal</span>
+{
+    <span class="cuvant-cheie">public string</span> <span class="proprietate">Rasa</span> { <span class="cuvant-cheie">get</span>; <span class="cuvant-cheie">set</span>; }
+
+    <span class="cuvant-cheie">public override void</span> <span class="functie">FaSunet</span>()  <span class="comentariu">// suprascriere</span>
+    {
+        Console.WriteLine(<span class="sir">$"{Nume} latră: Ham ham!"</span>);
+    }
+
+    <span class="cuvant-cheie">public void</span> <span class="functie">Latra</span>() => Console.WriteLine(<span class="sir">"Ham! Ham!"</span>);
+}
+
+<span class="comentariu">// Ierarhie pe mai multe niveluri</span>
+<span class="cuvant-cheie">public class</span> <span class="clasa">CainePolitist</span> : <span class="clasa">Caine</span>
+{
+    <span class="cuvant-cheie">public int</span> <span class="proprietate">NumarInsigna</span> { <span class="cuvant-cheie">get</span>; <span class="cuvant-cheie">set</span>; }
+
+    <span class="cuvant-cheie">public void</span> <span class="functie">Patruleaza</span>()
+    {
+        Console.WriteLine(<span class="sir">$"Câinele #{NumarInsigna} patrulează zona."</span>);
+    }
+}
+
+<span class="comentariu">// Utilizare</span>
+<span class="clasa">CainePolitist</span> rex = <span class="cuvant-cheie">new</span> <span class="clasa">CainePolitist</span> { Nume = <span class="sir">"Rex"</span>, Rasa = <span class="sir">"Ciobanesc"</span>, NumarInsigna = <span class="numar">42</span> };
+rex.<span class="functie">FaSunet</span>();    <span class="comentariu">// Rex latră: Ham ham!</span>
+rex.<span class="functie">Patruleaza</span>(); <span class="comentariu">// Câinele #42 patrulează zona.</span></pre>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="bloc-relatie">
+        <div class="titlu-bloc">
+            <h2>
+                <span class="insigna-pictograma"><i class="fa-solid fa-box-open"></i></span>
+                2. Agregare (Aggregation)
+            </h2>
+        </div>
+        <div class="continut-bloc">
+            <div class="meta-relatie">
+                <span class="insigna-meta portocaliu">„are un"</span>
+                <span class="insigna-meta portocaliu">HAS-A (slab)</span>
+                <span class="insigna-meta">Obiectul parte poate exista independent</span>
+            </div>
+
+            <p>
+                Agregarea este o relație de tip <strong>„are un"</strong> în care un obiect conține o referință către alt obiect,
+                dar cele două au <strong>cicluri de viață independente</strong>. Dacă containerul este distrus, obiectul conținut
+                poate supraviețui.
+            </p>
+            <ul>
+                <li>Implementată de obicei ca o <strong>proprietate / câmp de tip referință</strong>.</li>
+                <li>Obiectul parte este creat <em>în afara</em> containerului și transmis prin constructor sau setter.</li>
+                <li>Exemplu clasic: un <code>Profesor</code> predă la o <code>Scoala</code> — dacă școala se închide, profesorul există în continuare.</li>
+            </ul>
+
+            <div class="diagrama-uml">
+                <div class="clasa-uml">
+                    <div class="nume-clasa">Scoala</div>
+                    <div class="corp-clasa">+ Profesori : List&lt;Profesor&gt;</div>
+                </div>
+                <div class="sageata-uml">
+                    <span class="linie-sageata">◇────</span>
+                    <span class="eticheta-sageata">agregare</span>
+                </div>
+                <div class="clasa-uml">
+                    <div class="nume-clasa">Profesor</div>
+                    <div class="corp-clasa">+ Nume : string<br>+ Materie : string</div>
+                </div>
+            </div>
+
+            <div class="container-cod">
+                <div class="antet-cod">
+                    <div class="puncte"><span></span><span></span><span></span></div>
+                    <span class="eticheta-limbaj">C#</span>
+                </div>
+                <pre class="zona-text-cod"><span class="cuvant-cheie">public class</span> <span class="clasa">Profesor</span>
+{
+    <span class="cuvant-cheie">public string</span> <span class="proprietate">Nume</span>    { <span class="cuvant-cheie">get</span>; <span class="cuvant-cheie">set</span>; }
+    <span class="cuvant-cheie">public string</span> <span class="proprietate">Materie</span> { <span class="cuvant-cheie">get</span>; <span class="cuvant-cheie">set</span>; }
+
+    <span class="cuvant-cheie">public</span> <span class="functie">Profesor</span>(<span class="cuvant-cheie">string</span> nume, <span class="cuvant-cheie">string</span> materie)
+    {
+        Nume    = nume;
+        Materie = materie;
+    }
+
+    <span class="cuvant-cheie">public void</span> <span class="functie">Preda</span>() => Console.WriteLine(<span class="sir">$"{Nume} predă {Materie}."</span>);
+}
+
+<span class="cuvant-cheie">public class</span> <span class="clasa">Scoala</span>
+{
+    <span class="cuvant-cheie">public string</span> <span class="proprietate">Denumire</span> { <span class="cuvant-cheie">get</span>; <span class="cuvant-cheie">set</span>; }
+    <span class="comentariu">// Agregare — Profesorii sunt creați în afara Școlii</span>
+    <span class="cuvant-cheie">private</span> List&lt;<span class="clasa">Profesor</span>&gt; _profesori = <span class="cuvant-cheie">new</span>();
+
+    <span class="cuvant-cheie">public void</span> <span class="functie">AdaugaProfesor</span>(<span class="clasa">Profesor</span> p) => _profesori.Add(p);
+
+    <span class="cuvant-cheie">public void</span> <span class="functie">AfiseazaPersonal</span>()
+    {
+        <span class="cuvant-cheie">foreach</span> (<span class="cuvant-cheie">var</span> p <span class="cuvant-cheie">in</span> _profesori) p.<span class="functie">Preda</span>();
+    }
+}
+
+<span class="comentariu">// Profesorul există independent de școală</span>
+<span class="clasa">Profesor</span> ionescu = <span class="cuvant-cheie">new</span> <span class="clasa">Profesor</span>(<span class="sir">"Ionescu"</span>, <span class="sir">"Matematică"</span>);
+<span class="clasa">Scoala</span>   ceef    = <span class="cuvant-cheie">new</span> <span class="clasa">Scoala</span>   { Denumire = <span class="sir">"CEEF"</span> };
+
+ceef.<span class="functie">AdaugaProfesor</span>(ionescu);
+ceef.<span class="functie">AfiseazaPersonal</span>();
+
+<span class="comentariu">// Dacă ceef ar fi șters, ionescu rămâne valid</span></pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="bloc-relatie">
+        <div class="titlu-bloc">
+            <h2>
+                <span class="insigna-pictograma"><i class="fa-solid fa-cubes"></i></span>
+                3. Compunere (Composition)
+            </h2>
+        </div>
+        <div class="continut-bloc">
+            <div class="meta-relatie">
+                <span class="insigna-meta rosu">„este format din"</span>
+                <span class="insigna-meta rosu">HAS-A (puternic)</span>
+                <span class="insigna-meta">Cicluri de viață legate</span>
+            </div>
+
+            <p>
+                Compunerea este o formă <strong>mai puternică de agregare</strong>: obiectul parte <em>nu poate exista fără</em>
+                containerul său. Dacă containerul este distrus, toate componentele sale sunt distruse împreună cu el.
+                Obiectele parte sunt create <strong>în interiorul</strong> constructorului containerului.
+            </p>
+            <ul>
+                <li>Obiectul parte este instanțiat <em>în interiorul</em> clasei container.</li>
+                <li>Containerul deține <strong>responsabilitatea completă</strong> a duratei de viață.</li>
+                <li>Exemplu: o <code>Masina</code> este formată din <code>Motor</code> — dacă mașina e demolată, motorul nu mai are sens singur.</li>
+            </ul>
+
+            <div class="diagrama-uml">
+                <div class="clasa-uml">
+                    <div class="nume-clasa">Masina</div>
+                    <div class="corp-clasa">- motor : Motor<br>- cutieViteze : CutieViteze</div>
+                </div>
+                <div class="sageata-uml">
+                    <span class="linie-sageata">◆────</span>
+                    <span class="eticheta-sageata">compunere</span>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:8px;">
+                    <div class="clasa-uml">
+                        <div class="nume-clasa">Motor</div>
+                        <div class="corp-clasa">+ Putere : int<br>+ Porneste()</div>
+                    </div>
+                    <div class="clasa-uml">
+                        <div class="nume-clasa">CutieViteze</div>
+                        <div class="corp-clasa">+ NrViteze : int</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-cod">
+                <div class="antet-cod">
+                    <div class="puncte"><span></span><span></span><span></span></div>
+                    <span class="eticheta-limbaj">C#</span>
+                </div>
+                <pre class="zona-text-cod"><span class="cuvant-cheie">public class</span> <span class="clasa">Motor</span>
+{
+    <span class="cuvant-cheie">public int</span> <span class="proprietate">PutereCP</span> { <span class="cuvant-cheie">get</span>; }
+
+    <span class="cuvant-cheie">public</span> <span class="functie">Motor</span>(<span class="cuvant-cheie">int</span> putere) => PutereCP = putere;
+
+    <span class="cuvant-cheie">public void</span> <span class="functie">Porneste</span>() => Console.WriteLine(<span class="sir">$"Motor de {PutereCP} CP pornit! Vrrr..."</span>);
+}
+
+<span class="cuvant-cheie">public class</span> <span class="clasa">CutieViteze</span>
+{
+    <span class="cuvant-cheie">public int</span> <span class="proprietate">NrViteze</span> { <span class="cuvant-cheie">get</span>; }
+    <span class="cuvant-cheie">public</span> <span class="functie">CutieViteze</span>(<span class="cuvant-cheie">int</span> nr) => NrViteze = nr;
+}
+
+<span class="cuvant-cheie">public class</span> <span class="clasa">Masina</span>
+{
+    <span class="cuvant-cheie">public string</span> <span class="proprietate">Marca</span> { <span class="cuvant-cheie">get</span>; }
+    <span class="comentariu">// Compunere — componentele sunt create în constructor</span>
+    <span class="cuvant-cheie">private readonly</span> <span class="clasa">Motor</span>       _motor;
+    <span class="cuvant-cheie">private readonly</span> <span class="clasa">CutieViteze</span> _cutie;
+
+    <span class="cuvant-cheie">public</span> <span class="functie">Masina</span>(<span class="cuvant-cheie">string</span> marca, <span class="cuvant-cheie">int</span> putere, <span class="cuvant-cheie">int</span> viteze)
+    {
+        Marca  = marca;
+        _motor = <span class="cuvant-cheie">new</span> <span class="clasa">Motor</span>(putere);       <span class="comentariu">// creat INTERN</span>
+        _cutie = <span class="cuvant-cheie">new</span> <span class="clasa">CutieViteze</span>(viteze);  <span class="comentariu">// creat INTERN</span>
+    }
+
+    <span class="cuvant-cheie">public void</span> <span class="functie">Porneste</span>()
+    {
+        Console.WriteLine(<span class="sir">$"=== {Marca} ==="</span>);
+        _motor.<span class="functie">Porneste</span>();
+        Console.WriteLine(<span class="sir">$"Cutie cu {_cutie.NrViteze} viteze angrenată."</span>);
+    }
+}
+
+<span class="clasa">Masina</span> dacia = <span class="cuvant-cheie">new</span> <span class="clasa">Masina</span>(<span class="sir">"Dacia Logan"</span>, <span class="numar">90</span>, <span class="numar">5</span>);
+dacia.<span class="functie">Porneste</span>();
+<span class="comentariu">// === Dacia Logan ===
+// Motor de 90 CP pornit! Vrrr...
+// Cutie cu 5 viteze angrenată.</span></pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="bloc-relatie">
+        <div class="titlu-bloc">
+            <h2>
+                <span class="insigna-pictograma"><i class="fa-solid fa-link"></i></span>
+                4. Dependență (Dependency)
+            </h2>
+        </div>
+        <div class="continut-bloc">
+            <div class="meta-relatie">
+                <span class="insigna-meta mov">„folosește temporar"</span>
+                <span class="insigna-meta mov">USES-A</span>
+                <span class="insigna-meta">Cel mai slab tip de relație</span>
+            </div>
+
+            <p>
+                Dependența este cea mai <strong>slabă formă de relație</strong> dintre clase. O clasă <em>folosește</em>
+                o altă clasă temporar — de obicei ca <strong>parametru</strong> al unei metode, variabilă locală sau valoare
+                returnată — fără să o stocheze ca câmp.
+            </p>
+            <ul>
+                <li>Nu există câmp de tip referință — utilizarea e <strong>trecătoare</strong>.</li>
+                <li>Schimbarea clasei dependente poate afecta clasa utilizatoare.</li>
+                <li>Exemplu: un <code>Mecanic</code> <em>folosește</em> o <code>Cheie</code> ca să repare mașina, dar nu o deține permanent.</li>
+            </ul>
+
+            <div class="diagrama-uml">
+                <div class="clasa-uml">
+                    <div class="nume-clasa">Mecanic</div>
+                    <div class="corp-clasa">+ Repara(cheie: Cheie)</div>
+                </div>
+                <div class="sageata-uml">
+                    <span class="linie-sageata">- - - -▶</span>
+                    <span class="eticheta-sageata">dependență</span>
+                </div>
+                <div class="clasa-uml">
+                    <div class="nume-clasa">Cheie</div>
+                    <div class="corp-clasa">+ Tip : string<br>+ Strange()</div>
+                </div>
+            </div>
+
+            <div class="container-cod">
+                <div class="antet-cod">
+                    <div class="puncte"><span></span><span></span><span></span></div>
+                    <span class="eticheta-limbaj">C#</span>
+                </div>
+                <pre class="zona-text-cod"><span class="cuvant-cheie">public class</span> <span class="clasa">Cheie</span>
+{
+    <span class="cuvant-cheie">public string</span> <span class="proprietate">Tip</span> { <span class="cuvant-cheie">get</span>; <span class="cuvant-cheie">set</span>; }
+
+    <span class="cuvant-cheie">public void</span> <span class="functie">Strange</span>() =>
+        Console.WriteLine(<span class="sir">$"Cheie [{Tip}] strânsă."</span>);
+}
+
+<span class="cuvant-cheie">public class</span> <span class="clasa">Mecanic</span>
+{
+    <span class="cuvant-cheie">public string</span> <span class="proprietate">Nume</span> { <span class="cuvant-cheie">get</span>; <span class="cuvant-cheie">set</span>; }
+
+    <span class="comentariu">// Dependență — Cheie e parametru, nu câmp</span>
+    <span class="cuvant-cheie">public void</span> <span class="functie">Repara</span>(<span class="clasa">Cheie</span> cheie, <span class="cuvant-cheie">string</span> componenta)
+    {
+        Console.WriteLine(<span class="sir">$"{Nume} repară {componenta}..."</span>);
+        cheie.<span class="functie">Strange</span>();  <span class="comentariu">// folosire temporară</span>
+        Console.WriteLine(<span class="sir">"Reparație finalizată!"</span>);
+    }               <span class="comentariu">// cheie iese din scope — Mecanicul nu o păstrează</span>
+}
+
+<span class="clasa">Mecanic</span> ion   = <span class="cuvant-cheie">new</span> <span class="clasa">Mecanic</span> { Nume = <span class="sir">"Ion"</span> };
+<span class="clasa">Cheie</span>   cheie = <span class="cuvant-cheie">new</span> <span class="clasa">Cheie</span>   { Tip  = <span class="sir">"17mm"</span> };
+
+ion.<span class="functie">Repara</span>(cheie, <span class="sir">"filtru ulei"</span>);
+<span class="comentariu">// Ion repară filtru ulei...
+// Cheie [17mm] strânsă.
+// Reparație finalizată!</span></pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="tabel-sumar">
+        <div class="titlu-bloc">
+            <h2>
+                <span class="insigna-pictograma"><i class="fa-solid fa-table"></i></span>
+                Tabel comparativ
+            </h2>
+        </div>
+        <div class="continut-bloc">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Relație</th>
+                        <th>Tipul legăturii</th>
+                        <th>Ciclu de viață</th>
+                        <th>Implementare C#</th>
+                        <th>Exemplu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="eticheta-relatie">Moștenire</span></td>
+                        <td>„este un tip de"</td>
+                        <td>Ierarhic</td>
+                        <td><code>class B : A</code></td>
+                        <td>Câine → Animal</td>
+                    </tr>
+                    <tr>
+                        <td><span class="eticheta-relatie">Agregare</span></td>
+                        <td>„are un" (slab)</td>
+                        <td>Independent</td>
+                        <td>Proprietate / referință externă</td>
+                        <td>Scoala ◇ Profesor</td>
+                    </tr>
+                    <tr>
+                        <td><span class="eticheta-relatie">Compunere</span></td>
+                        <td>„este format din"</td>
+                        <td>Legat (parte moare cu întregul)</td>
+                        <td>Instanțiere în constructor</td>
+                        <td>Masina ◆ Motor</td>
+                    </tr>
+                    <tr>
+                        <td><span class="eticheta-relatie">Dependență</span></td>
+                        <td>„folosește temporar"</td>
+                        <td>Tranzitoriu</td>
+                        <td>Parametru / variabilă locală</td>
+                        <td>Mecanic ···▶ Cheie</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>
+<footer>
+    <div class="footer-continut">
+        <p class="copyright">&copy; 2026 Pelin Dragoș. Toate drepturile rezervate.</p>
+        <a href="#top" class="sus-link">Înapoi sus &uarr;</a>
+    </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,2547 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarcini Practică</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header id="top">
+    <nav>
+            <a href="index.html">CV-ul meu</a>
+            <a href="sarcini-practica.html">Sarcini Practică</a>
+            <a href="relatii-POO.html">Relații POO</a>
+            <a href="experiente.html">Experiențe Acumulate</a>
+            <a href="planificare.html">Planificare</a>
+            <a href="declaratie.html">Declarație</a>
+    </nav>
+    <div class="continut-antet">
+        <div class="pictograma-pagina"><i class="fa-solid fa-flask"></i></div>
+        <h1>Sarcini Practică</h1>
+        <p class="subtitlu">Lucrări practice · C# &amp; C++</p>
+        <div class="fir-navigare-antet">
+            <a href="index.html"><i class="fa-solid fa-house"></i> Acasă</a>
+            <span>/</span>
+            <span>Sarcini Practică</span>
+        </div>
+    </div>
+</header>
+
+<section>
+
+    <div class="bara-statistici">
+        <div class="card-statistica">
+            <div class="pictograma-statistica"><i class="fa-solid fa-list-check"></i></div>
+            <div class="text-statistica">
+                <div class="numar-statistica">11</div>
+                <div class="eticheta-statistica">Sarcini totale</div>
+            </div>
+        </div>
+        <div class="card-statistica">
+            <div class="pictograma-statistica"><i class="fa-solid fa-code"></i></div>
+            <div class="text-statistica">
+                <div class="numar-statistica">C# / C++</div>
+                <div class="eticheta-statistica">Limbaj principal</div>
+            </div>
+        </div>
+        <div class="card-statistica">
+            <div class="pictograma-statistica"><i class="fa-solid fa-link"></i></div>
+            <div class="text-statistica">
+                <div class="numar-statistica">OnlineGDB</div>
+                <div class="eticheta-statistica">Platformă demo</div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card-sarcina">
+        <input type="checkbox" id="toggle-m1-5" class="toggle-card">
+        <label class="antet-sarcina" for="toggle-m1-5">
+            <span class="insigna-sarcina">M1.5</span>
+            <span class="titlu-sarcina">Sarcina M1.5</span>
+            <span class="meta-sarcina"><i class="fa-regular fa-calendar"></i> C++</span>
+            <i class="fa-solid fa-chevron-down sageata"></i>
+        </label>
+        <div class="separator-sarcina"></div>
+        <div class="corp-sarcina">
+            <div class="interior-corp-sarcina">
+                <div class="rand-link">
+                    <span class="eticheta-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Link online:</span>
+                    <a class="link-gdb" href="https://onlinegdb.com/zz_iGYG_T" target="_blank"><i class="fa-solid fa-code"></i> Deschide în OnlineGDB</a>
+                </div>
+                <div class="sectiune-imagine">
+                    <div class="eticheta-sectiune"><i class="fa-solid fa-image"></i> Imagine rezultat consolă</div>
+                    <div class="card-imagine">
+                        <img src="Imagini/M1.5.png" alt="Captură de ecran M1.5">
+                    </div>
+                </div>
+                <div class="sectiune-cod">
+                    <div class="eticheta-sectiune"><i class="fa-solid fa-file-code"></i> Codul sursă</div>
+                    <div class="container-cod">
+                        <div class="antet-cod">
+                            <div class="puncte"><span></span><span></span><span></span></div>
+                            <span class="eticheta-limbaj">C++</span>
+                        </div>
+                        <textarea class="zona-text-cod">
+#include <iostream>
+#include <cmath>
+#include <fstream>
+using namespace std;
+struct puncte
+{
+    int x;
+    int y;
+} p[30];
+int pctA_index = -1, pctB_index = -1, countnrSol;
+
+
+void citire(int &n)
+{
+    
+    fstream fin("date.in");
+    if (!fin.is_open())
+    {
+        cout << "Fisierul nu s-a putut deschide";
+        exit(1);
+    }
+    else cout << "Fisierul s-a deschis cu succes\n";
+    fin >> n;
+    for (int i = 0; i < n; i++)
+    {
+        fin >> p[i].x >> p[i].y;
+    }
+
+    fin.close();
+}
+void solutiiPosibile(int n, double solPosibile[])
+{
+    countnrSol = 0;
+    for (int i = 0; i < n - 1; i++)
+    {
+        for (int j = i + 1; j < n; j++)
+        {
+            solPosibile[countnrSol] = (double)sqrt(pow(p[i].x - p[j].x, 2) + pow(p[i].y - p[j].y, 2));
+            countnrSol++;
+        }
+    }
+}
+void Solutii(double solPosibile[], int nSol, int n)
+{
+    double max = -9999;
+    solutiiPosibile(n, solPosibile);
+    countnrSol = 0;
+    for (int i = 0; i < n - 1; i++)
+    {
+        for (int j = i + 1; j < n; j++)
+        {
+            if (max < solPosibile[countnrSol]) {
+                max = solPosibile[countnrSol];
+                pctA_index = i;
+                pctB_index = j;
+            }
+            countnrSol++;
+        }
+    }
+    cout << "Coordonatele cu distanta maxima\n";
+    cout << "Coordonatele punctului 1: " << p[pctA_index].x << " " << p[pctA_index].y << endl;
+    cout << "Coordonatele punctului 2: " << p[pctB_index].x << " " << p[pctB_index].y << endl;
+}
+
+int main()
+{
+    int n;
+    
+    citire(n);
+    int nSol = (n * (n - 1)) / 2;
+    double* solPosibile = new double[nSol];
+    Solutii(solPosibile,nSol,n);
+    delete[]solPosibile;
+
+}
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="card-sarcina">
+        <input type="checkbox" id="toggle-m2-9" class="toggle-card">
+        <label class="antet-sarcina" for="toggle-m2-9">
+            <span class="insigna-sarcina">M2.9</span>
+            <span class="titlu-sarcina">Sarcina M2.9</span>
+            <span class="meta-sarcina"><i class="fa-regular fa-calendar"></i> C++</span>
+            <i class="fa-solid fa-chevron-down sageata"></i>
+        </label>
+        <div class="separator-sarcina"></div>
+        <div class="corp-sarcina">
+            <div class="interior-corp-sarcina">
+                <div class="rand-link">
+                    <span class="eticheta-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Link online:</span>
+                    <a class="link-gdb" href="https://onlinegdb.com/pdOfq6kCM" target="_blank"><i class="fa-solid fa-code"></i> Deschide în OnlineGDB</a>
+                </div>
+                <div class="sectiune-imagine">
+                    <div class="eticheta-sectiune"><i class="fa-solid fa-image"></i> Imagine rezultat consolă</div>
+                    <div class="card-imagine">
+                        <img src="Imagini/M2.9.png" alt="Captură de ecran M2.9">
+                    </div>
+                </div>
+                <div class="sectiune-cod">
+                    <div class="eticheta-sectiune"><i class="fa-solid fa-file-code"></i> Codul sursă</div>
+                    <div class="container-cod">
+                        <div class="antet-cod">
+                            <div class="puncte"><span></span><span></span><span></span></div>
+                            <span class="eticheta-limbaj">C++</span>
+                        </div>
+                        <textarea class="zona-text-cod">
+#include <iostream>
+#include <fstream>
+using namespace std;
+int n, t[1000],taux[1000], solt[1000], aux;
+void citire() {
+    fstream fin("date.in");
+    if (!fin.is_open())
+    {
+        cout << "Fisierul nu s-a putut deshide!";
+        exit(1);
+    }
+    fin >> n;
+    for (int i = 0; i < n; i++)
+    {
+        fin>>t[i];
+        taux[i] = t[i];
+        
+    }
+
+    fin.close();
+}
+void sortare()
+{
+    for (int i = 0; i < n - 1; i++)
+    {
+        for (int j = i + 1; j < n; j++)
+        {
+
+            if (t[i] > t[j])
+            {
+                aux = t[i];
+                t[i] = t[j];
+                t[j] = aux;
+            }
+        }
+
+    }
+}
+double timpMediu()
+{
+    double s = 0;
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 1; j <= i + 1; j++)
+        {
+            s += t[j - 1];
+        }
+    }
+    return s / n;
+}
+int solutie(int i)
+{
+    for (int j = 0; j < n; j++)
+    {
+        if (t[i] == taux[j])
+        {
+            return j + 1;
+        }
+    }
+}
+int main()
+{
+    fstream fout;
+    fout.open("date.out", ios::out);
+    citire();
+    sortare();
+    fout << "Timpul mediu de asteptare: " << timpMediu() << endl;
+    for (int i = 0; i < n; i++)
+    {
+        solt[i] = solutie(i);
+        fout << solt[i] << " ";
+    }
+    fout.close();
+}
+
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-sarcina">
+        <input type="checkbox" id="toggle-m3-18" class="toggle-card">
+        <label class="antet-sarcina" for="toggle-m3-18">
+            <span class="insigna-sarcina">M3.18</span>
+            <span class="titlu-sarcina">Sarcina M3.18</span>
+            <span class="meta-sarcina"><i class="fa-regular fa-calendar"></i> C++</span>
+            <i class="fa-solid fa-chevron-down sageata"></i>
+        </label>
+        <div class="separator-sarcina"></div>
+        <div class="corp-sarcina">
+            <div class="interior-corp-sarcina">
+                <div class="rand-link">
+                    <span class="eticheta-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Link online:</span>
+                    <a class="link-gdb" href="https://onlinegdb.com/ypT8Zt1xg" target="_blank"><i class="fa-solid fa-code"></i> Deschide în OnlineGDB</a>
+                </div>
+                <div class="sectiune-imagine">
+                    <div class="eticheta-sectiune"><i class="fa-solid fa-image"></i> Imagine rezultat consolă</div>
+                    <div class="card-imagine">
+                        <img src="Imagini/M3.18.png" alt="Captură de ecran M3.18">
+                    </div>
+                </div>
+                <div class="sectiune-cod">
+                    <div class="eticheta-sectiune"><i class="fa-solid fa-file-code"></i> Codul sursă</div>
+                    <div class="container-cod">
+                        <div class="antet-cod">
+                            <div class="puncte"><span></span><span></span><span></span></div>
+                            <span class="eticheta-limbaj">C++</span>
+                        </div>
+                        <textarea class="zona-text-cod">
+#include <iostream>
+using namespace std;
+int n, x[100];
+
+bool prim(int nr) {
+	if (nr < 2) return false;
+	for (int d = 2; d * d <= nr; d++) {
+		if (nr % d == 0) return false;
+	}
+	return true;
+}
+
+int valid(int k)
+{
+	if (!prim(x[k])) return 0;
+	if (k > 1 && x[k] < x[k - 1]) return 0;
+
+	int s = 0;
+	for (int i = 1; i <= k; i++) {
+		s += x[i];
+	}
+
+	if (s > n) return 0;
+	return 1;
+}
+
+bool solutie(int k)
+{
+	int s = 0;
+	for (int i = 1; i <= k; i++) {
+		s += x[i];
+	}
+	return s == n;
+}
+
+void afisare(int k)
+{
+	for (int i = 1; i < k; i++) {
+		cout << x[i] << " + ";
+	}
+	cout << x[k] << endl;
+}
+
+void BK(int k)
+{
+	for (int i = 1; i <= n; i++)
+	{
+		x[k] = i;
+		if (valid(k))
+		{
+			if (solutie(k))
+				afisare(k);
+			else
+				BK(k + 1);
+		}
+	}
+}
+
+int main()
+{
+	cin >> n;
+	BK(1);
+	return 0;
+}
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-sarcina">
+        <input type="checkbox" id="toggle-m3-28" class="toggle-card">
+        <label class="antet-sarcina" for="toggle-m3-28">
+            <span class="insigna-sarcina">M3.28</span>
+            <span class="titlu-sarcina">Sarcina M3.28</span>
+            <span class="meta-sarcina"><i class="fa-regular fa-calendar"></i> C++</span>
+            <i class="fa-solid fa-chevron-down sageata"></i>
+        </label>
+        <div class="separator-sarcina"></div>
+        <div class="corp-sarcina">
+            <div class="interior-corp-sarcina">
+                <div class="rand-link">
+                    <span class="eticheta-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Link online:</span>
+                    <a class="link-gdb" href="https://onlinegdb.com/sntvyCrFn" target="_blank"><i class="fa-solid fa-code"></i> Deschide în OnlineGDB</a>
+                </div>
+                <div class="sectiune-imagine">
+                    <div class="eticheta-sectiune"><i class="fa-solid fa-image"></i> Imagine rezultat consolă</div>
+                    <div class="card-imagine">
+                        <img src="Imagini/M3.28.png" alt="Captură de ecran M3.28">
+                    </div>
+                </div>
+                <div class="sectiune-cod">
+                    <div class="eticheta-sectiune"><i class="fa-solid fa-file-code"></i> Codul sursă</div>
+                    <div class="container-cod">
+                        <div class="antet-cod">
+                            <div class="puncte"><span></span><span></span><span></span></div>
+                            <span class="eticheta-limbaj">C++</span>
+                        </div>
+                        <textarea class="zona-text-cod">
+#include <iostream>
+using namespace std;
+
+int n, v[100], x[100], p[100];
+int l_sub;
+
+int valid(int k)
+{
+    if (k > 1 && x[k] <= x[k - 1]) return 0;
+    return 1;
+}
+
+bool solutie(int k, int lungime)
+{
+    return k == lungime;
+}
+
+void afisare(int k)
+{
+    for (int i = 1; i <= k; i++) {
+        cout << v[x[i]] << " ";
+    }
+    cout << endl;
+}
+
+void BK(int k, int lungime)
+{
+    int start = 1;
+    if (k > 1) {
+        start = x[k - 1] + 1;
+    }
+
+    for (int i = start; i <= n; i++)
+    {
+        x[k] = i;
+        if (valid(k))
+        {
+            p[k]++;
+            if (solutie(k, lungime)) {
+                if (lungime == l_sub) {
+                    afisare(k);
+                }
+            }
+            else {
+                BK(k + 1, lungime);
+            }
+        }
+    }
+}
+
+int main()
+{
+    cin >> n;
+    for (int i = 1; i <= n; i++) {
+        cin >> v[i];
+    }
+
+    l_sub = n / 5;
+
+    cout << "Subsirurile crescatoare de lungime " << l_sub << ":" << endl;
+    if (l_sub > 0) {
+        BK(1, l_sub);
+    }
+    else {
+        cout << "Lungimea [n/5] este 0." << endl;
+    }
+
+    for (int i = 1; i <= n; i++) {
+        p[i] = 0;
+    }
+
+    for (int k = 1; k <= n; k++) {
+        BK(1, k);
+    }
+
+    int s = 0;
+    for (int i = 1; i <= n; i++) {
+        s += p[i];
+    }
+
+    cout << "Suma tuturor numarului de subsiruri (p1+p2+...+pn): " << s << endl;
+
+    return 0;
+}
+
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-sarcina">
+        <input type="checkbox" id="toggle-m4-2" class="toggle-card">
+        <label class="antet-sarcina" for="toggle-m4-2">
+            <span class="insigna-sarcina">M4.2</span>
+            <span class="titlu-sarcina">Sarcina M4.2</span>
+            <span class="meta-sarcina"><i class="fa-regular fa-calendar"></i> C++</span>
+            <i class="fa-solid fa-chevron-down sageata"></i>
+        </label>
+        <div class="separator-sarcina"></div>
+        <div class="corp-sarcina">
+            <div class="interior-corp-sarcina">
+                <div class="rand-link">
+                    <span class="eticheta-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Link online:</span>
+                    <a class="link-gdb" href="https://onlinegdb.com/XPTjQuY_d" target="_blank"><i class="fa-solid fa-code"></i> Deschide în OnlineGDB</a>
+                </div>
+                <div class="sectiune-imagine">
+                    <div class="eticheta-sectiune"><i class="fa-solid fa-image"></i> Imagine rezultat consolă</div>
+                    <div class="card-imagine">
+                        <img src="Imagini/M4.2.png" alt="Captură de ecran M4.2">
+                    </div>
+                </div>
+                <div class="sectiune-cod">
+                    <div class="eticheta-sectiune"><i class="fa-solid fa-file-code"></i> Codul sursă</div>
+                    <div class="container-cod">
+                        <div class="antet-cod">
+                            <div class="puncte"><span></span><span></span><span></span></div>
+                            <span class="eticheta-limbaj">C++</span>
+                        </div>
+                        <textarea class="zona-text-cod">
+#include <iostream>
+
+using namespace std;
+int n, x[1000], nr_sol = 0;
+int valid(int k)
+{
+    if (x[1]!=1 && k ==1)
+        return 0;
+    for (int i = 1; i < k; i++)
+    {
+        if (x[k] == x[i])
+            return 0;
+    }
+    return 1;
+}
+bool solutie(int k)
+{
+    return k == n;
+}
+void afisare()
+{
+    for (int i = 1; i <= n; i++)
+    {
+        cout << x[i] << " ";
+    }
+    cout << endl;
+}
+void BK(int k)
+{
+    for (int i = 1; i <= n; i++)
+    {
+        x[k] = i;
+        if (valid(k))
+        {
+            if (solutie(k))
+            {
+                afisare();
+                nr_sol++;
+            }
+            else BK(k + 1);
+        }
+    }
+}
+int main()
+{
+    cout << "n= "; cin >> n;
+    BK(1);
+    cout << "Numar total de permutari: " << nr_sol << endl;
+}
+
+
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-sarcina">
+        <input type="checkbox" id="toggle-m5-2" class="toggle-card">
+        <label class="antet-sarcina" for="toggle-m5-2">
+            <span class="insigna-sarcina">M5.2</span>
+            <span class="titlu-sarcina">Sarcina M5.2</span>
+            <span class="meta-sarcina"><i class="fa-regular fa-calendar"></i> C++</span>
+            <i class="fa-solid fa-chevron-down sageata"></i>
+        </label>
+        <div class="separator-sarcina"></div>
+        <div class="corp-sarcina">
+            <div class="interior-corp-sarcina">
+                <div class="rand-link">
+                    <span class="eticheta-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Link online:</span>
+                    <a class="link-gdb" href="https://onlinegdb.com/OgE62dWlm" target="_blank"><i class="fa-solid fa-code"></i> Deschide în OnlineGDB</a>
+                </div>
+                <div class="sectiune-imagine">
+                    <div class="eticheta-sectiune"><i class="fa-solid fa-image"></i> Imagine rezultat consolă</div>
+                    <div class="card-imagine">
+                        <img src="Imagini/M5.2.png" alt="Captură de ecran M5.2">
+                    </div>
+                </div>
+                <div class="sectiune-cod">
+                    <div class="eticheta-sectiune"><i class="fa-solid fa-file-code"></i> Codul sursă</div>
+                    <div class="container-cod">
+                        <div class="antet-cod">
+                            <div class="puncte"><span></span><span></span><span></span></div>
+                            <span class="eticheta-limbaj">C++</span>
+                        </div>
+                        <textarea class="zona-text-cod">
+#include <iostream>
+#include <string>
+using namespace std;
+
+string devide(string s, int st, int dr) {
+    if (st == dr) {
+        if (s[st] == '.') {
+            return s.substr(st);
+        }
+        return "";
+    }
+
+    int m = (st + dr) / 2;
+
+    string stanga = devide(s, st, m);
+    string dreapta = devide(s, m + 1, dr);
+
+    if (stanga != "") return stanga;
+    return dreapta;
+}
+
+int main() {
+    double x;
+    cout << "Introdu valoarea lui x (-10000;10000): ";
+    cin >> x;
+
+    while (x <= -10000 || x >= 10000) {
+        cout << "Reintrodu valoarea lui x (-10000;10000): ";
+        cin >> x;
+    }
+
+    string s = to_string(x);
+
+    while (s.back() == '0') {
+        s.pop_back();
+    }
+    if (s.back() == '.') {
+        s.pop_back();
+    }
+
+    string fractie = devide(s, 0, s.length() - 1);
+
+    if (fractie == "" || fractie == ".") {
+        cout << "0" << endl;
+    }
+    else {
+        cout << "0" << fractie << endl;
+    }
+
+    return 0;
+}
+
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-sarcina">
+        <input type="checkbox" id="toggle-m6-3" class="toggle-card">
+        <label class="antet-sarcina" for="toggle-m6-3">
+            <span class="insigna-sarcina">M6.3</span>
+            <span class="titlu-sarcina">Sarcina M6.3</span>
+            <span class="meta-sarcina"><i class="fa-regular fa-calendar"></i> C++</span>
+            <i class="fa-solid fa-chevron-down sageata"></i>
+        </label>
+        <div class="separator-sarcina"></div>
+        <div class="corp-sarcina">
+            <div class="interior-corp-sarcina">
+                <div class="rand-link">
+                    <span class="eticheta-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Link online:</span>
+                    <a class="link-gdb" href="https://onlinegdb.com/ObliXXhRc" target="_blank"><i class="fa-solid fa-code"></i> Deschide în OnlineGDB</a>
+                </div>
+                <div class="sectiune-imagine">
+                    <div class="eticheta-sectiune"><i class="fa-solid fa-image"></i> Imagine rezultat consolă</div>
+                    <div class="card-imagine">
+                        <img src="Imagini/M6.3.png" alt="Captură de ecran M6.3">
+                    </div>
+                </div>
+                <div class="sectiune-cod">
+                    <div class="eticheta-sectiune"><i class="fa-solid fa-file-code"></i> Codul sursă</div>
+                    <div class="container-cod">
+                        <div class="antet-cod">
+                            <div class="puncte"><span></span><span></span><span></span></div>
+                            <span class="eticheta-limbaj">C++</span>
+                        </div>
+                        <textarea class="zona-text-cod">
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+namespace POO_8
+{
+    class Student
+    {
+        private bool esteAbsolvent;
+        private double medie;
+        private int numarRestante;
+
+        public string Nume { get; set; }
+        public List<double> Note { get; set; }
+
+        public double Medie
+        {
+            get
+            {
+                return Note.Count > 0 ? Note.Average() : 0;
+            }
+            private set
+            {
+                medie = value;
+            }
+        }
+
+        public int NumarRestante
+        {
+            get
+            {
+                return Note.Count(n => n < 5);
+            }
+            private set
+            {
+                numarRestante = value;
+            }
+        }
+
+        public bool EsteAbsolvent
+        {
+            get
+            {
+                return NumarRestante == 0;
+            }
+            set
+            {
+                esteAbsolvent = value;
+            }
+        }
+
+        public Student(string nume, List<double> note)
+        {
+            Nume = nume;
+            Note = note;
+        }
+
+        public static List<Student> CitesteDinFisier(string caleFisier)
+        {
+            List<Student> studenti = new List<Student>();
+
+            using (StreamReader sr = new StreamReader(caleFisier))
+            {
+                string linie;
+                while ((linie = sr.ReadLine()) != null)
+                {
+                    if (string.IsNullOrWhiteSpace(linie)) continue;
+                    string[] bucati = linie.Split('|');
+                    string nume = bucati[0].Trim();
+                    List<double> note = new List<double>();
+
+                    for (int i = 1; i < bucati.Length; i++)
+                    {
+                        if (double.TryParse(bucati[i].Trim(), out double nota))
+                        {
+                            note.Add(nota);
+                        }
+                    }
+                    studenti.Add(new Student(nume, note));
+                }
+            }
+            return studenti;
+        }
+
+        public static void AfiseazaStudenti(List<Student> studenti)
+        {
+            Console.WriteLine("{0,-20} | {1,-12} | {2,-6} | {3,-8}", "Nume", "Note", "Medie", "Restante");
+            foreach (var s in studenti)
+            {
+                Console.WriteLine("{0,-20} | {1,-12} | {2,-6:F2} | {3,-8}", s.Nume, string.Join(" ", s.Note), s.Medie, s.NumarRestante);
+            }
+        }
+
+        public static void ClasareAbsolventiRepetenti(List<Student> studenti)
+        {
+            Console.WriteLine("--- ABSOLVENTI ---");
+            foreach (var s in studenti.Where(s => s.EsteAbsolvent))
+                Console.WriteLine($"{s.Nume} - Medie: {s.Medie:F2}");
+
+            Console.WriteLine("\n--- REPETENTI ---");
+            foreach (var s in studenti.Where(s => !s.EsteAbsolvent))
+                Console.WriteLine($"{s.Nume} - Restante: {s.NumarRestante}");
+        }
+
+        public static void AfiseazaDupaMedieMinima(List<Student> studenti, double medieLimita)
+        {
+            var filtrati = studenti.Where(s => s.Medie > medieLimita).ToList();
+            Console.WriteLine($"Studenti cu media > {medieLimita}: {filtrati.Count}\n");
+            AfiseazaStudenti(filtrati);
+        }
+
+        public static void OrdoneazaDupaMedie(List<Student> studenti)
+        {
+            AfiseazaStudenti(studenti.OrderByDescending(s => s.Medie).ToList());
+        }
+
+        public static void AfiseazaBursieri(List<Student> studenti)
+        {
+            AfiseazaStudenti(studenti.Where(s => s.EsteAbsolvent && s.Medie >= 8.50).ToList());
+        }
+
+        public static void ClasareDupaRestante(List<Student> studenti)
+        {
+            AfiseazaStudenti(studenti.OrderBy(s => s.NumarRestante).ToList());
+        }
+
+        public static void OrdoneazaDupaNotaMaterie(List<Student> studenti, int indexMaterie)
+        {
+            var sortati = studenti.OrderByDescending(s => s.Note[indexMaterie]).ToList();
+            Console.WriteLine("{0,-20} | {1,-10}", "Nume", $"Nota Mat.{indexMaterie}");
+            foreach (var s in sortati)
+            {
+                Console.WriteLine("{0,-20} | {1,-10}", s.Nume, s.Note[indexMaterie]);
+            }
+        }
+    }
+    public class Program
+    {
+        static void Main(string[] args)
+        {
+            string caleFisier = "studenti.txt";
+
+            if (!File.Exists(caleFisier))
+            {
+                Console.WriteLine("Eroare: Fisierul nu exista!");
+                Console.ReadKey();
+                return;
+            }
+
+            List<Student> listaStudenti = Student.CitesteDinFisier(caleFisier);
+            bool rulare = true;
+
+            while (rulare)
+            {
+                Console.Clear();
+                Console.WriteLine("=== MENIU SECRETARIAT ===");
+                Console.WriteLine("1. Afisare toti studentii");
+                Console.WriteLine("2. Clasare absolventi si repetenti");
+                Console.WriteLine("3. Studenti cu media mai mare decat o valoare");
+                Console.WriteLine("4. Ordonare dupa medie");
+                Console.WriteLine("5. Afisare studenti bursieri");
+                Console.WriteLine("6. Clasare dupa numarul de restante");
+                Console.WriteLine("7. Ordonare dupa nota de la o materie");
+                Console.WriteLine("0. Iesire");
+                Console.Write("\nOption: ");
+
+                string optiune = Console.ReadLine();
+                Console.Clear();
+
+                switch (optiune)
+                {
+                    case "1":
+                        Student.AfiseazaStudenti(listaStudenti);
+                        break;
+                    case "2":
+                        Student.ClasareAbsolventiRepetenti(listaStudenti);
+                        break;
+                    case "3":
+                        Console.Write("Introdu media: ");
+                        if (double.TryParse(Console.ReadLine(), out double medie))
+                        {
+                            Student.AfiseazaDupaMedieMinima(listaStudenti, medie);
+                        }
+                        break;
+                    case "4":
+                        Student.OrdoneazaDupaMedie(listaStudenti);
+                        break;
+                    case "5":
+                        Student.AfiseazaBursieri(listaStudenti);
+                        break;
+                    case "6":
+                        Student.ClasareDupaRestante(listaStudenti);
+                        break;
+                    case "7":
+                        Console.Write("Introdu indexul materiei (0, 1, 2): ");
+                        if (int.TryParse(Console.ReadLine(), out int index) && index >= 0 && index < 3)
+                        {
+                            Student.OrdoneazaDupaNotaMaterie(listaStudenti, index);
+                        }
+                        break;
+                    case "0":
+                        rulare = false;
+                        continue;
+                    default:
+                        Console.WriteLine("Optiune gresita!");
+                        break;
+                }
+
+                Console.WriteLine("\nApasă o tastă pentru meniu...");
+                Console.ReadKey();
+            }
+        }
+    }
+
+    
+}
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-sarcina">
+        <input type="checkbox" id="toggle-poo-8" class="toggle-card">
+        <label class="antet-sarcina" for="toggle-poo-8">
+            <span class="insigna-sarcina">POO_8</span>
+            <span class="titlu-sarcina">Sarcina POO_8</span>
+            <span class="meta-sarcina"><i class="fa-regular fa-calendar"></i> POO</span>
+            <i class="fa-solid fa-chevron-down sageata"></i>
+        </label>
+        <div class="separator-sarcina"></div>
+        <div class="corp-sarcina">
+            <div class="interior-corp-sarcina">
+                <div class="rand-link">
+                    <span class="eticheta-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Link online:</span>
+                    <a class="link-gdb" href="https://onlinegdb.com/foDLP43Q4" target="_blank"><i class="fa-solid fa-code"></i> Deschide în OnlineGDB</a>
+                </div>
+                <div class="sectiune-imagine">
+                    <div class="eticheta-sectiune"><i class="fa-solid fa-image"></i> Imagine rezultat consolă</div>
+                    <div class="card-imagine">
+                        <img src="Imagini/POO_8.png" alt="Captură de ecran POO_8">
+                    </div>
+                </div>
+                <div class="sectiune-cod">
+                    <div class="eticheta-sectiune"><i class="fa-solid fa-file-code"></i> Codul sursă</div>
+                    <div class="container-cod">
+                        <div class="antet-cod">
+                            <div class="puncte"><span></span><span></span><span></span></div>
+                            <span class="eticheta-limbaj">C#</span>
+                        </div>
+                        <textarea class="zona-text-cod">
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+namespace POO_8
+{
+    class Student
+    {
+        private bool esteAbsolvent;
+        private double medie;
+        private int numarRestante;
+
+        public string Nume { get; set; }
+        public List<double> Note { get; set; }
+
+        public double Medie
+        {
+            get
+            {
+                return Note.Count > 0 ? Note.Average() : 0;
+            }
+            private set
+            {
+                medie = value;
+            }
+        }
+
+        public int NumarRestante
+        {
+            get
+            {
+                return Note.Count(n => n < 5);
+            }
+            private set
+            {
+                numarRestante = value;
+            }
+        }
+
+        public bool EsteAbsolvent
+        {
+            get
+            {
+                return NumarRestante == 0;
+            }
+            set
+            {
+                esteAbsolvent = value;
+            }
+        }
+
+        public Student(string nume, List<double> note)
+        {
+            Nume = nume;
+            Note = note;
+        }
+
+        public static List<Student> CitesteDinFisier(string caleFisier)
+        {
+            List<Student> studenti = new List<Student>();
+
+            using (StreamReader sr = new StreamReader(caleFisier))
+            {
+                string linie;
+                while ((linie = sr.ReadLine()) != null)
+                {
+                    if (string.IsNullOrWhiteSpace(linie)) continue;
+                    string[] bucati = linie.Split('|');
+                    string nume = bucati[0].Trim();
+                    List<double> note = new List<double>();
+
+                    for (int i = 1; i < bucati.Length; i++)
+                    {
+                        if (double.TryParse(bucati[i].Trim(), out double nota))
+                        {
+                            note.Add(nota);
+                        }
+                    }
+                    studenti.Add(new Student(nume, note));
+                }
+            }
+            return studenti;
+        }
+
+        public static void AfiseazaStudenti(List<Student> studenti)
+        {
+            Console.WriteLine("{0,-20} | {1,-12} | {2,-6} | {3,-8}", "Nume", "Note", "Medie", "Restante");
+            foreach (var s in studenti)
+            {
+                Console.WriteLine("{0,-20} | {1,-12} | {2,-6:F2} | {3,-8}", s.Nume, string.Join(" ", s.Note), s.Medie, s.NumarRestante);
+            }
+        }
+
+        public static void ClasareAbsolventiRepetenti(List<Student> studenti)
+        {
+            Console.WriteLine("--- ABSOLVENTI ---");
+            foreach (var s in studenti.Where(s => s.EsteAbsolvent))
+                Console.WriteLine($"{s.Nume} - Medie: {s.Medie:F2}");
+
+            Console.WriteLine("\n--- REPETENTI ---");
+            foreach (var s in studenti.Where(s => !s.EsteAbsolvent))
+                Console.WriteLine($"{s.Nume} - Restante: {s.NumarRestante}");
+        }
+
+        public static void AfiseazaDupaMedieMinima(List<Student> studenti, double medieLimita)
+        {
+            var filtrati = studenti.Where(s => s.Medie > medieLimita).ToList();
+            Console.WriteLine($"Studenti cu media > {medieLimita}: {filtrati.Count}\n");
+            AfiseazaStudenti(filtrati);
+        }
+
+        public static void OrdoneazaDupaMedie(List<Student> studenti)
+        {
+            AfiseazaStudenti(studenti.OrderByDescending(s => s.Medie).ToList());
+        }
+
+        public static void AfiseazaBursieri(List<Student> studenti)
+        {
+            AfiseazaStudenti(studenti.Where(s => s.EsteAbsolvent && s.Medie >= 8.50).ToList());
+        }
+
+        public static void ClasareDupaRestante(List<Student> studenti)
+        {
+            AfiseazaStudenti(studenti.OrderBy(s => s.NumarRestante).ToList());
+        }
+
+        public static void OrdoneazaDupaNotaMaterie(List<Student> studenti, int indexMaterie)
+        {
+            var sortati = studenti.OrderByDescending(s => s.Note[indexMaterie]).ToList();
+            Console.WriteLine("{0,-20} | {1,-10}", "Nume", $"Nota Mat.{indexMaterie}");
+            foreach (var s in sortati)
+            {
+                Console.WriteLine("{0,-20} | {1,-10}", s.Nume, s.Note[indexMaterie]);
+            }
+        }
+    }
+    public class Program
+    {
+        static void Main(string[] args)
+        {
+            string caleFisier = "studenti.txt";
+
+            if (!File.Exists(caleFisier))
+            {
+                Console.WriteLine("Eroare: Fisierul nu exista!");
+                Console.ReadKey();
+                return;
+            }
+
+            List<Student> listaStudenti = Student.CitesteDinFisier(caleFisier);
+            bool rulare = true;
+
+            while (rulare)
+            {
+                Console.Clear();
+                Console.WriteLine("=== MENIU SECRETARIAT ===");
+                Console.WriteLine("1. Afisare toti studentii");
+                Console.WriteLine("2. Clasare absolventi si repetenti");
+                Console.WriteLine("3. Studenti cu media mai mare decat o valoare");
+                Console.WriteLine("4. Ordonare dupa medie");
+                Console.WriteLine("5. Afisare studenti bursieri");
+                Console.WriteLine("6. Clasare dupa numarul de restante");
+                Console.WriteLine("7. Ordonare dupa nota de la o materie");
+                Console.WriteLine("0. Iesire");
+                Console.Write("\nOption: ");
+
+                string optiune = Console.ReadLine();
+                Console.Clear();
+
+                switch (optiune)
+                {
+                    case "1":
+                        Student.AfiseazaStudenti(listaStudenti);
+                        break;
+                    case "2":
+                        Student.ClasareAbsolventiRepetenti(listaStudenti);
+                        break;
+                    case "3":
+                        Console.Write("Introdu media: ");
+                        if (double.TryParse(Console.ReadLine(), out double medie))
+                        {
+                            Student.AfiseazaDupaMedieMinima(listaStudenti, medie);
+                        }
+                        break;
+                    case "4":
+                        Student.OrdoneazaDupaMedie(listaStudenti);
+                        break;
+                    case "5":
+                        Student.AfiseazaBursieri(listaStudenti);
+                        break;
+                    case "6":
+                        Student.ClasareDupaRestante(listaStudenti);
+                        break;
+                    case "7":
+                        Console.Write("Introdu indexul materiei (0, 1, 2): ");
+                        if (int.TryParse(Console.ReadLine(), out int index) && index >= 0 && index < 3)
+                        {
+                            Student.OrdoneazaDupaNotaMaterie(listaStudenti, index);
+                        }
+                        break;
+                    case "0":
+                        rulare = false;
+                        continue;
+                    default:
+                        Console.WriteLine("Optiune gresita!");
+                        break;
+                }
+
+                Console.WriteLine("\nApasă o tastă pentru meniu...");
+                Console.ReadKey();
+            }
+        }
+    }
+
+    
+}
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-sarcina">
+        <input type="checkbox" id="toggle-poo-21" class="toggle-card">
+        <label class="antet-sarcina" for="toggle-poo-21">
+            <span class="insigna-sarcina">POO_21</span>
+            <span class="titlu-sarcina">Sarcina POO_21</span>
+            <span class="meta-sarcina"><i class="fa-regular fa-calendar"></i> POO</span>
+            <i class="fa-solid fa-chevron-down sageata"></i>
+        </label>
+        <div class="separator-sarcina"></div>
+        <div class="corp-sarcina">
+            <div class="interior-corp-sarcina">
+                <div class="rand-link">
+                    <span class="eticheta-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Link online:</span>
+                    <a class="link-gdb" href="https://onlinegdb.com/9a7hzqkB2" target="_blank"><i class="fa-solid fa-code"></i> Deschide în OnlineGDB</a>
+                </div>
+                <div class="sectiune-imagine">
+                    <div class="eticheta-sectiune"><i class="fa-solid fa-image"></i> Imagine rezultat consolă</div>
+                    <div class="card-imagine">
+                        <img src="Imagini/POO_21.png" alt="Captură de ecran POO_21">
+                    </div>
+                </div>
+                <div class="sectiune-cod">
+                    <div class="eticheta-sectiune"><i class="fa-solid fa-file-code"></i> Codul sursă</div>
+                    <div class="container-cod">
+                        <div class="antet-cod">
+                            <div class="puncte"><span></span><span></span><span></span></div>
+                            <span class="eticheta-limbaj">C#</span>
+                        </div>
+                        <textarea class="zona-text-cod" >
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+
+namespace POO_21
+{
+   
+
+    abstract class Produs
+    {
+        private string codProdus;
+        private string furnizor;
+        private string unitateMasura;
+        private double pretFurnizor;
+        private double adaos;
+        private int cantitate;
+        private DateTime termenValabilitate;
+        private double pretVanzare;
+
+        public string CodProdus
+        {
+            get { return codProdus; }
+            set { codProdus = value; }
+        }
+        public string Furnizor
+        {
+            get { return furnizor; }
+            set { furnizor = value; }
+        }
+        public string UnitateMasura
+        {
+            get { return unitateMasura; }
+            set { unitateMasura = value; }
+        }
+        public double PretFurnizor
+        {
+            get { return pretFurnizor; }
+            set { pretFurnizor = value; }
+        }
+        public double Adaos
+        {
+            get { return adaos; }
+            set { adaos = value; }
+        }
+        public int Cantitate
+        {
+            get { return cantitate; }
+            set { cantitate = value; }
+        }
+        public DateTime TermenValabilitate
+        {
+            get { return termenValabilitate; }
+            set { termenValabilitate = value; }
+        }
+
+        public abstract string Tip { get; }
+
+        public double PretVanzare
+        {
+            get
+            {
+                return PretFurnizor + (PretFurnizor * Adaos / 100);
+            }
+            private set
+            {
+                pretVanzare = value;
+            }
+        }
+
+        public Produs(string codProdus, string furnizor, string unitateMasura, double pretFurnizor, double adaos, int cantitate, DateTime termenValabilitate)
+        {
+            CodProdus = codProdus;
+            Furnizor = furnizor;
+            UnitateMasura = unitateMasura;
+            PretFurnizor = pretFurnizor;
+            Adaos = adaos;
+            Cantitate = cantitate;
+            TermenValabilitate = termenValabilitate;
+        }
+    }
+
+    class ProdusAlimentar : Produs
+    {
+        public override string Tip
+        {
+            get { return "Alimentar"; }
+        }
+        public ProdusAlimentar(string c, string f, string u, double p, double a, int cant, DateTime t) : base(c, f, u, p, a, cant, t) { }
+    }
+
+    class ProdusCosmetic : Produs
+    {
+        public override string Tip
+        {
+            get { return "Cosmetic"; }
+        }
+        public ProdusCosmetic(string c, string f, string u, double p, double a, int cant, DateTime t) : base(c, f, u, p, a, cant, t) { }
+    }
+
+    class ProdusBautura : Produs
+    {
+        public override string Tip
+        {
+            get { return "Bautura"; }
+        }
+        public ProdusBautura(string c, string f, string u, double p, double a, int cant, DateTime t) : base(c, f, u, p, a, cant, t) { }
+    }
+    public class Program
+    {
+        static void Main(string[] args)
+        {
+            string caleFisier = "produse.txt";
+
+            if (!File.Exists(caleFisier))
+            {
+                Console.WriteLine("Eroare: Fisierul nu exista!");
+                Console.ReadKey();
+                return;
+            }
+
+            List<Produs> produse = new List<Produs>();
+
+            using (StreamReader sr = new StreamReader(caleFisier))
+            {
+                string linie;
+                while ((linie = sr.ReadLine()) != null)
+                {
+                    if (string.IsNullOrWhiteSpace(linie)) continue;
+
+                    string[] b = linie.Split('|');
+                    string tip = b[0].Trim();
+                    string cod = b[1].Trim();
+                    string furnizor = b[2].Trim();
+                    string um = b[3].Trim();
+                    double pret = double.Parse(b[4].Trim(), CultureInfo.InvariantCulture);
+                    double adaos = double.Parse(b[5].Trim(), CultureInfo.InvariantCulture);
+                    int cantitate = int.Parse(b[6].Trim());
+                    DateTime data = DateTime.ParseExact(b[7].Trim(), "dd.MM.yyyy", CultureInfo.InvariantCulture);
+
+                    Produs p = null;
+                    if (tip == "Alimentar") p = new ProdusAlimentar(cod, furnizor, um, pret, adaos, cantitate, data);
+                    if (tip == "Cosmetic") p = new ProdusCosmetic(cod, furnizor, um, pret, adaos, cantitate, data);
+                    if (tip == "Bautura") p = new ProdusBautura(cod, furnizor, um, pret, adaos, cantitate, data);
+
+                    if (p != null)
+                    {
+                        produse.Add(p);
+                    }
+                }
+            }
+
+            bool rulare = true;
+            while (rulare)
+            {
+                Console.Clear();
+                Console.WriteLine("=== GESTIUNE SUPERMARKET ===");
+                Console.WriteLine("1. Adaugare produs");
+                Console.WriteLine("2. Cautare produs dupa furnizor");
+                Console.WriteLine("3. Stergere produse expirate");
+                Console.WriteLine("4. Vanzare produs (Cantitate - 1)");
+                Console.WriteLine("5. Calculare pret de vanzare pe categorii");
+                Console.WriteLine("6. Afisare toate produsele");
+                Console.WriteLine("0. Iesire");
+                Console.Write("\nOption: ");
+
+                string optiune = Console.ReadLine();
+                Console.Clear();
+
+                switch (optiune)
+                {
+                    case "1":
+                        AdaugaProdusNou(produse);
+                        break;
+
+                    case "2":
+                        Console.Write("Introdu numele furnizorului: ");
+                        string f = Console.ReadLine();
+                        CautareFurnizor(produse, f);
+                        break;
+
+                    case "3":
+                        StergeExpirate(produse);
+                        break;
+
+                    case "4":
+                        Console.Write("Introdu codul produsului pentru vanzare: ");
+                        string codVanzare = Console.ReadLine();
+                        VindeProdus(produse, codVanzare);
+                        break;
+
+                    case "5":
+                        Console.Write("Introdu categoria (Alimentar/Cosmetic/Bautura): ");
+                        string cat = Console.ReadLine();
+                        CalculPretCategorie(produse, cat);
+                        break;
+
+                    case "6":
+                        Console.WriteLine("--- TOATE PRODUSELE DIN SUPERMARKET ---");
+                        AfiseazaLista(produse);
+                        break;
+
+                    case "0":
+                        rulare = false;
+                        continue;
+
+                    default:
+                        Console.WriteLine("Optiune gresita!");
+                        break;
+                }
+
+                Console.WriteLine("\nApasă o tastă pentru meniu...");
+                Console.ReadKey();
+            }
+        }
+
+        static void AdaugaProdusNou(List<Produs> produse)
+        {
+            Console.Write("Tip (Alimentar/Cosmetic/Bautura): ");
+            string tip = Console.ReadLine();
+            Console.Write("Cod: ");
+            string cod = Console.ReadLine();
+            Console.Write("Furnizor: ");
+            string furnizor = Console.ReadLine();
+            Console.Write("Unitate masura: ");
+            string um = Console.ReadLine();
+            Console.Write("Pret furnizor: ");
+            double pret = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+            Console.Write("Adaos (%): ");
+            double adaos = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+            Console.Write("Cantitate: ");
+            int cantitate = int.Parse(Console.ReadLine());
+            Console.Write("Termen valabilitate (dd.MM.yyyy): ");
+            DateTime data = DateTime.ParseExact(Console.ReadLine(), "dd.MM.yyyy", CultureInfo.InvariantCulture);
+
+            Produs p = null;
+            if (tip.ToLower() == "alimentar") p = new ProdusAlimentar(cod, furnizor, um, pret, adaos, cantitate, data);
+            else if (tip.ToLower() == "cosmetic") p = new ProdusCosmetic(cod, furnizor, um, pret, adaos, cantitate, data);
+            else if (tip.ToLower() == "bautura") p = new ProdusBautura(cod, furnizor, um, pret, adaos, cantitate, data);
+
+            if (p != null)
+            {
+                produse.Add(p);
+                Console.WriteLine("Produs adaugat cu succes!");
+            }
+            else
+            {
+                Console.WriteLine("Tip de produs invalid!");
+            }
+        }
+
+        static void CautareFurnizor(List<Produs> produse, string furnizor)
+        {
+            var gasite = produse.Where(p => p.Furnizor.Equals(furnizor, StringComparison.OrdinalIgnoreCase)).ToList();
+            if (gasite.Count == 0)
+            {
+                Console.WriteLine("Nu s-au gasit produse de la acest furnizor.");
+                return;
+            }
+            AfiseazaLista(gasite);
+        }
+
+        static void StergeExpirate(List<Produs> produse)
+        {
+            int initial = produse.Count;
+            produse.RemoveAll(p => p.TermenValabilitate < DateTime.Now);
+            Console.WriteLine($"Au fost sterse {initial - produse.Count} produse expirate.");
+        }
+        static void VindeProdus(List<Produs> produse, string codProdus)
+        {
+            Produs produs = produse.FirstOrDefault(p => p.CodProdus == codProdus);
+            if (produs != null)
+            {
+                if (produs.Cantitate > 0)
+                {
+                    produs.Cantitate--;
+                    Console.WriteLine($"Produs vandut! Cantitate ramasa: {produs.Cantitate}");
+                }
+                else
+                {
+                    Console.WriteLine("Stoc insuficient!");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Produsul nu a fost gasit!");
+            }
+        }
+
+        static void CalculPretCategorie(List<Produs> produse, string categorie)
+        {
+            var filtrate = produse.Where(p => p.Tip.Equals(categorie, StringComparison.OrdinalIgnoreCase)).ToList();
+            if (filtrate.Count == 0)
+            {
+                Console.WriteLine("Nu exista produse in aceasta categorie.");
+                return;
+            }
+
+            Console.WriteLine("{0,-10} | {1,-15} | {2,-15} | {3,-12}", "Cod", "Tip", "Pret Furnizor", "Pret Vanzare");
+            foreach (var p in filtrate)
+            {
+                Console.WriteLine("{0,-10} | {1,-15} | {2,-15:F2} | {3,-12:F2}", p.CodProdus, p.Tip, p.PretFurnizor, p.PretVanzare);
+            }
+        }
+
+        static void AfiseazaLista(List<Produs> lista)
+        {
+            Console.WriteLine("{0,-10} | {1,-15} | {2,-12} | {3,-6} | {4,-10} | {5,-12}", "Cod", "Furnizor", "Pret", "Cant.", "Expira", "Tip");
+            foreach (var p in lista)
+            {
+                Console.WriteLine("{0,-10} | {1,-15} | {2,-12:F2} | {3,-6} | {4,-10} | {5,-12}", p.CodProdus, p.Furnizor, p.PretVanzare, p.Cantitate, p.TermenValabilitate.ToString("dd.MM.yyyy"), p.Tip);
+            }
+        }
+    }
+}
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-sarcina">
+        <input type="checkbox" id="toggle-independent" class="toggle-card">
+        <label class="antet-sarcina" for="toggle-independent">
+            <span class="insigna-sarcina">Independent</span>
+            <span class="titlu-sarcina">Sarcina Independentă</span>
+            <span class="meta-sarcina"><i class="fa-regular fa-calendar"></i> Independentă</span>
+            <i class="fa-solid fa-chevron-down sageata"></i>
+        </label>
+        <div class="separator-sarcina"></div>
+        <div class="corp-sarcina">
+            <div class="interior-corp-sarcina">
+                <div class="rand-link">
+                    <span class="eticheta-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Link online:</span>
+                    <a class="link-gdb" href="https://onlinegdb.com/pM-U2Qw_x" target="_blank"><i class="fa-solid fa-code"></i> Deschide în OnlineGDB</a>
+                </div>
+                <div class="sectiune-imagine">
+                    <div class="eticheta-sectiune"><i class="fa-solid fa-image"></i> Imagine rezultat consolă</div>
+                    <div class="card-imagine">
+                        <img src="Imagini/Independenta.png" alt="Captură de ecran Independentă">
+                    </div>
+                </div>
+                <div class="sectiune-cod">
+                    <div class="eticheta-sectiune"><i class="fa-solid fa-file-code"></i> Codul sursă</div>
+                    <div class="container-cod">
+                        <div class="antet-cod">
+                            <div class="puncte"><span></span><span></span><span></span></div>
+                            <span class="eticheta-limbaj">C++</span>
+                        </div>
+                        <textarea class="zona-text-cod" >
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+struct puncte {
+    int x;
+    int y;
+    int z;
+} solPosibile[250000];
+
+int countnrSol = 0;
+
+void citire(int& R) {
+    cout << "R = ";
+    cin >> R;
+}
+
+void solutiiPosibile(int R) {
+    countnrSol = 0;
+    int R_patrat = R * R;
+
+    for (int x = -R; x <= R; x++) {
+        for (int y = -R; y <= R; y++) {
+            for (int z = -R; z <= R; z++) {
+                if (x * x + y * y + z * z <= R_patrat) {
+                    solPosibile[countnrSol].x = x;
+                    solPosibile[countnrSol].y = y;
+                    solPosibile[countnrSol].z = z;
+                    countnrSol++;
+                }
+            }
+        }
+    }
+}
+
+void Solutii(int R) {
+    solutiiPosibile(R);
+
+    cout << "Total: " << countnrSol << endl;
+
+    int limita = (countnrSol < 10) ? countnrSol : 10;
+    for (int i = 0; i < limita; i++) {
+        cout << solPosibile[i].x << " "
+            << solPosibile[i].y << " "
+            << solPosibile[i].z << endl;
+    }
+}
+
+int main() {
+    int R;
+
+    citire(R);
+
+    if (R < 1 || R > 30) {
+        return 1;
+    }
+
+    Solutii(R);
+
+    return 0;
+}
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-sarcina">
+        <input type="checkbox" id="toggle-suplimentara" class="toggle-card">
+        <label class="antet-sarcina" for="toggle-suplimentara">
+            <span class="insigna-sarcina">Sarcina Suplimentară</span>
+            <span class="titlu-sarcina">Sarcina Suplimentară</span>
+            <span class="meta-sarcina"><i class="fa-regular fa-star"></i> Suplimentară</span>
+            <i class="fa-solid fa-chevron-down sageata"></i>
+        </label>
+        <div class="separator-sarcina"></div>
+        <div class="corp-sarcina">
+            <div class="interior-corp-sarcina">
+                <div class="rand-link">
+                    <span class="eticheta-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Link online:</span>
+                    <a class="link-gdb" href="https://onlinegdb.com/Bg6f21yD1" target="_blank"><i class="fa-solid fa-code"></i> Deschide în OnlineGDB</a>
+                </div>
+                <div class="sectiune-imagine">
+                    <div class="eticheta-sectiune"><i class="fa-solid fa-image"></i> Imagine rezultat consolă</div>
+                    <div class="card-imagine">
+                        <img src="Imagini/Suplimentara.png" alt="Captură de ecran Suplimentară">
+                    </div>
+                </div>
+                <div class="sectiune-cod">
+                    <div class="eticheta-sectiune"><i class="fa-solid fa-file-code"></i> Codul sursă</div>
+                    <div class="container-cod">
+                        <div class="antet-cod">
+                            <div class="puncte"><span></span><span></span><span></span></div>
+                            <span class="eticheta-limbaj">C#</span>
+                        </div>
+                        <textarea class="zona-text-cod">
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.IO;
+using System.Text;
+using System.Threading.Tasks;
+using System.Globalization;
+
+namespace Sarcina_Suplimentara
+{
+    public class Persoana
+    {
+        private static int anCurent = 2026;
+        protected string nume, prenume;
+        protected int anulNasterii;
+
+        public Persoana(string n, string p, int an)
+        {
+            nume = n;
+            prenume = p;
+            anulNasterii = an;
+        }
+
+        public virtual void Afisare()
+        {
+            Console.Write($"Nume: {nume} {prenume}, Varsta: {Varsta()} ani");
+        }
+
+        public virtual void Citire()
+        {
+            Console.Write("Nume: "); nume = Console.ReadLine();
+            Console.Write("Prenume: "); prenume = Console.ReadLine();
+            Console.Write("Anul nasterii: "); anulNasterii = int.Parse(Console.ReadLine());
+        }
+
+        public virtual void CitireDinFisier(string[] date)
+        {
+            nume = date[1];
+            prenume = date[2];
+            anulNasterii = int.Parse(date[3]);
+        }
+
+        public virtual void ScriereInFisier(StreamWriter sw)
+        {
+            sw.Write($"{Tip()}|{nume}|{prenume}|{anulNasterii}|");
+        }
+
+        public virtual double Salariu() { return 0; }
+        public virtual double Bursa() { return 0; }
+        public virtual int Tip() { return 0; }
+        public virtual string DenumireTip() { return "Persoana"; }
+
+        public int Varsta() { return anCurent - anulNasterii; }
+        public static void SetAnCurent(int a) { anCurent = a; }
+        public string Nume { get { return nume; } }
+    }
+
+    public class Angajat : Persoana
+    {
+        protected int oreLucrate;
+        protected double plataOra;
+
+        public Angajat(string n, string p, int an, int o, double pl) : base(n, p, an)
+        {
+            oreLucrate = o;
+            plataOra = pl;
+        }
+
+        public override void Afisare()
+        {
+            base.Afisare();
+            Console.Write($", Ore lucrate: {oreLucrate}, Plata/ora: {plataOra}");
+        }
+
+        public override void Citire()
+        {
+            base.Citire();
+            Console.Write("Ore lucrate: "); oreLucrate = int.Parse(Console.ReadLine());
+            Console.Write("Plata pe ora: "); plataOra = double.Parse(Console.ReadLine());
+        }
+
+        public override void CitireDinFisier(string[] date)
+        {
+            base.CitireDinFisier(date);
+            oreLucrate = int.Parse(date[4]);
+            plataOra = double.Parse(date[5]);
+        }
+
+        public override void ScriereInFisier(StreamWriter sw)
+        {
+            base.ScriereInFisier(sw);
+            sw.WriteLine($"{oreLucrate}|{plataOra}");
+        }
+
+        public override double Salariu() { return oreLucrate * plataOra; }
+        public override int Tip() { return 2; }
+        public override string DenumireTip() { return "Angajat"; }
+    }
+
+    public class Student : Persoana
+    {
+        protected string grupa;
+        protected float media;
+
+        public Student(string n, string p, int an, string g, float m) : base(n, p, an)
+        {
+            grupa = g;
+            media = m;
+        }
+
+        public override void Afisare()
+        {
+            base.Afisare();
+            Console.Write($", Grupa: {grupa}, Media: {media}");
+        }
+
+        public override void Citire()
+        {
+            base.Citire();
+            Console.Write("Grupa: "); grupa = Console.ReadLine();
+            Console.Write("Media: "); media = float.Parse(Console.ReadLine());
+        }
+
+        public override void CitireDinFisier(string[] date)
+        {
+            base.CitireDinFisier(date);
+            grupa = date[4];
+            media = float.Parse(date[5]);
+        }
+
+        public override void ScriereInFisier(StreamWriter sw)
+        {
+            base.ScriereInFisier(sw);
+            sw.WriteLine($"{grupa}|{media}");
+        }
+
+        public override double Bursa()
+        {
+            if (media >= 9.0) return 1500;
+            else if (media >= 8.0) return 1000;
+            else if (media >= 7.0) return 500;
+            return 0;
+        }
+
+        public override int Tip() { return 1; }
+        public override string DenumireTip() { return "Student"; }
+        public float GetMedia() { return media; }
+    }
+
+    public class StudAng : Student
+    {
+        private int oreLucrate;
+        private double plataOra;
+
+        public StudAng(string n, string p, int an, string g, float m, int o, double pl) : base(n, p, an, g, m)
+        {
+            oreLucrate = o;
+            plataOra = pl;
+        }
+
+        public override void Afisare()
+        {
+            base.Afisare();
+            Console.Write($", Ore lucrate: {oreLucrate}, Plata/ora: {plataOra}");
+        }
+
+        public override void Citire()
+        {
+            base.Citire();
+            Console.Write("Ore lucrate: "); oreLucrate = int.Parse(Console.ReadLine());
+            Console.Write("Plata pe ora: "); plataOra = double.Parse(Console.ReadLine());
+        }
+
+        public override void CitireDinFisier(string[] date)
+        {
+            base.CitireDinFisier(date);
+            oreLucrate = int.Parse(date[6]);
+            plataOra = double.Parse(date[7]);
+        }
+
+        public override void ScriereInFisier(StreamWriter sw)
+        {
+            base.ScriereInFisier(sw);
+            sw.WriteLine($"{oreLucrate}|{plataOra}");
+        }
+
+        public override double Salariu() { return oreLucrate * plataOra; }
+        public override double Bursa() { return base.Bursa(); }
+        public override int Tip() { return 3; }
+        public override string DenumireTip() { return "Student Angajat"; }
+    }
+
+    public class Administrator : Angajat
+    {
+        protected int anulAngajarii;
+        protected int gradCalificare;
+
+        public Administrator(string n, string p, int an, int o, double pl, int anAng, int grad) : base(n, p, an, o, pl)
+        {
+            anulAngajarii = anAng;
+            gradCalificare = grad;
+        }
+
+        public override void Afisare()
+        {
+            base.Afisare();
+            Console.Write($", An angajare: {anulAngajarii}, Grad calificare: {gradCalificare}");
+        }
+
+        public override void Citire()
+        {
+            base.Citire();
+            Console.Write("Anul angajarii: "); anulAngajarii = int.Parse(Console.ReadLine());
+            Console.Write("Grad calificare (1-5): "); gradCalificare = int.Parse(Console.ReadLine());
+        }
+
+        public override void CitireDinFisier(string[] date)
+        {
+            base.CitireDinFisier(date);
+            anulAngajarii = int.Parse(date[6]);
+            gradCalificare = int.Parse(date[7]);
+        }
+
+        public override void ScriereInFisier(StreamWriter sw)
+        {
+            base.ScriereInFisier(sw);
+            sw.WriteLine($"{anulAngajarii}|{gradCalificare}");
+        }
+
+        public override double Salariu()
+        {
+            double baza = base.Salariu();
+            int vechime = Varsta() - (2026 - anulAngajarii);
+            double bonusVechime = vechime * 0.05 * baza;
+            double bonusGrad = (gradCalificare - 1) * 0.1 * baza;
+            return baza + bonusVechime + bonusGrad;
+        }
+
+        public override int Tip() { return 4; }
+        public override string DenumireTip() { return "Administrator"; }
+    }
+
+    public class Contabil : Angajat
+    {
+        protected int nrRapoarte;
+        protected bool certificat;
+
+        public Contabil(string n, string p, int an, int o, double pl, int rap, bool cert) : base(n, p, an, o, pl)
+        {
+            nrRapoarte = rap;
+            certificat = cert;
+        }
+
+        public override void Afisare()
+        {
+            base.Afisare();
+            Console.Write($", Rapoarte/luna: {nrRapoarte}, Certificat: {(certificat ? "DA" : "NU")}");
+        }
+
+        public override void Citire()
+        {
+            base.Citire();
+            Console.Write("Numar rapoarte pe luna: "); nrRapoarte = int.Parse(Console.ReadLine());
+            Console.Write("Certificat (1/0): "); certificat = int.Parse(Console.ReadLine()) == 1;
+        }
+
+        public override void CitireDinFisier(string[] date)
+        {
+            base.CitireDinFisier(date);
+            nrRapoarte = int.Parse(date[6]);
+            certificat = bool.Parse(date[7]);
+        }
+
+        public override void ScriereInFisier(StreamWriter sw)
+        {
+            base.ScriereInFisier(sw);
+            sw.WriteLine($"{nrRapoarte}|{certificat}");
+        }
+
+        public override double Salariu()
+        {
+            double baza = base.Salariu();
+            double bonusRapoarte = nrRapoarte * 25;
+            double bonusCertificat = certificat ? 500 : 0;
+            return baza + bonusRapoarte + bonusCertificat;
+        }
+
+        public override int Tip() { return 5; }
+        public override string DenumireTip() { return "Contabil"; }
+    }
+
+    public class Lector : Angajat
+    {
+        protected int nrOrePredare;
+        protected string disciplina;
+
+        public Lector(string n, string p, int an, int o, double pl, int orePred, string disc) : base(n, p, an, o, pl)
+        {
+            nrOrePredare = orePred;
+            disciplina = disc;
+        }
+
+        public override void Afisare()
+        {
+            base.Afisare();
+            Console.Write($", Ore predare/sapt: {nrOrePredare}, Disciplina: {disciplina}");
+        }
+
+        public override void Citire()
+        {
+            base.Citire();
+            Console.Write("Ore predare pe saptamana: "); nrOrePredare = int.Parse(Console.ReadLine());
+            Console.Write("Disciplina: "); disciplina = Console.ReadLine();
+        }
+
+        public override void CitireDinFisier(string[] date)
+        {
+            base.CitireDinFisier(date);
+            nrOrePredare = int.Parse(date[6]);
+            disciplina = date[7];
+        }
+
+        public override void ScriereInFisier(StreamWriter sw)
+        {
+            base.ScriereInFisier(sw);
+            sw.WriteLine($"{nrOrePredare}|{disciplina}");
+        }
+
+        public override double Salariu()
+        {
+            double baza = base.Salariu();
+            double bonusDidactic = nrOrePredare * plataOra * 1.5;
+            return baza + bonusDidactic;
+        }
+
+        public override int Tip() { return 6; }
+        public override string DenumireTip() { return "Lector"; }
+    }
+
+    public class SefLaborator : Administrator
+    {
+        protected string numeLaborator;
+        protected int nrStudentiCoord;
+
+        public SefLaborator(string n, string p, int an, int o, double pl, int anAng, int grad, string lab, int nrStud) : base(n, p, an, o, pl, anAng, grad)
+        {
+            numeLaborator = lab;
+            nrStudentiCoord = nrStud;
+        }
+
+        public override void Afisare()
+        {
+            base.Afisare();
+            Console.Write($", Laborator: {numeLaborator}, Studenti coordonati: {nrStudentiCoord}");
+        }
+
+        public override void Citire()
+        {
+            base.Citire();
+            Console.Write("Numele laboratorului: "); numeLaborator = Console.ReadLine();
+            Console.Write("Numar studenti coordonati: "); nrStudentiCoord = int.Parse(Console.ReadLine());
+        }
+
+        public override void CitireDinFisier(string[] date)
+        {
+            base.CitireDinFisier(date);
+            numeLaborator = date[8];
+            nrStudentiCoord = int.Parse(date[9]);
+        }
+
+        public override void ScriereInFisier(StreamWriter sw)
+        {
+            base.ScriereInFisier(sw);
+            sw.WriteLine($"{numeLaborator}|{nrStudentiCoord}");
+        }
+
+        public override double Salariu()
+        {
+            double baza = base.Salariu();
+            double bonusCoord = nrStudentiCoord * 50;
+            return baza + bonusCoord;
+        }
+
+        public override int Tip() { return 7; }
+        public override string DenumireTip() { return "Sef Laborator"; }
+    }
+
+    public class ConsultantPartTime : Angajat
+    {
+        protected double fractiuneNorma;
+        protected string domeniuExpertiza;
+
+        public ConsultantPartTime(string n, string p, int an, int o, double pl, double frac, string domeniu) : base(n, p, an, o, pl)
+        {
+            fractiuneNorma = frac;
+            domeniuExpertiza = domeniu;
+        }
+
+        public override void Afisare()
+        {
+            base.Afisare();
+            Console.Write($", Fractiune norma: {fractiuneNorma * 100}%, Domeniu: {domeniuExpertiza}");
+        }
+
+        public override void Citire()
+        {
+            base.Citire();
+            Console.Write("Fractiune norma (0.25/0.5/0.75): "); fractiuneNorma = double.Parse(Console.ReadLine());
+            Console.Write("Domeniu expertiza: "); domeniuExpertiza = Console.ReadLine();
+        }
+
+        public override void CitireDinFisier(string[] date)
+        {
+            base.CitireDinFisier(date);
+            fractiuneNorma = double.Parse(date[6]);
+            domeniuExpertiza = date[7];
+        }
+
+        public override void ScriereInFisier(StreamWriter sw)
+        {
+            base.ScriereInFisier(sw);
+            sw.WriteLine($"{fractiuneNorma}|{domeniuExpertiza}");
+        }
+
+        public override double Salariu()
+        {
+            return base.Salariu() * fractiuneNorma;
+        }
+
+        public override int Tip() { return 8; }
+        public override string DenumireTip() { return "Consultant Part-time"; }
+    }
+
+    public class JuristPartTime : ConsultantPartTime
+    {
+        protected int nrProiecte;
+        protected double onorariuProiect;
+
+        public JuristPartTime(string n, string p, int an, int o, double pl, double frac, string domeniu, int proj, double onor) : base(n, p, an, o, pl, frac, domeniu)
+        {
+            nrProiecte = proj;
+            onorariuProiect = onor;
+        }
+
+        public override void Afisare()
+        {
+            base.Afisare();
+            Console.Write($", Proiecte active: {nrProiecte}, Onorariu/proiect: {onorariuProiect}");
+        }
+
+        public override void Citire()
+        {
+            base.Citire();
+            Console.Write("Numar proiecte active: "); nrProiecte = int.Parse(Console.ReadLine());
+            Console.Write("Onorariu per proiect: "); onorariuProiect = double.Parse(Console.ReadLine());
+        }
+
+        public override void CitireDinFisier(string[] date)
+        {
+            base.CitireDinFisier(date);
+            nrProiecte = int.Parse(date[8]);
+            onorariuProiect = double.Parse(date[9]);
+        }
+
+        public override void ScriereInFisier(StreamWriter sw)
+        {
+            base.ScriereInFisier(sw);
+            sw.WriteLine($"{nrProiecte}|{onorariuProiect}");
+        }
+
+        public override double Salariu()
+        {
+            double baza = base.Salariu();
+            double onorarii = nrProiecte * onorariuProiect;
+            return baza + onorarii;
+        }
+
+        public override int Tip() { return 9; }
+        public override string DenumireTip() { return "Jurist Part-time"; }
+    }
+
+    public class StudentBursier : Student
+    {
+        protected int tipBursa;
+        protected double cuantumFix;
+
+        public StudentBursier(string n, string p, int an, string g, float m, int tipB, double cuantum) : base(n, p, an, g, m)
+        {
+            tipBursa = tipB;
+            cuantumFix = cuantum;
+        }
+
+        public override void Afisare()
+        {
+            base.Afisare();
+            string[] tipuri = { "", "Performanta", "Merit", "Sociala" };
+            Console.Write($", Tip bursa: {tipuri[tipBursa]}, Cuantum fix: {cuantumFix}");
+        }
+
+        public override void Citire()
+        {
+            base.Citire();
+            Console.Write("Tip bursa (1=Performanta, 2=Merit, 3=Sociala): "); tipBursa = int.Parse(Console.ReadLine());
+            Console.Write("Cuantum fix suplimentar: "); cuantumFix = double.Parse(Console.ReadLine());
+        }
+
+        public override void CitireDinFisier(string[] date)
+        {
+            base.CitireDinFisier(date);
+            tipBursa = int.Parse(date[6]);
+            cuantumFix = double.Parse(date[7]);
+        }
+
+        public override void ScriereInFisier(StreamWriter sw)
+        {
+            base.ScriereInFisier(sw);
+            sw.WriteLine($"{tipBursa}|{cuantumFix}");
+        }
+
+        public override double Bursa()
+        {
+            double baza = base.Bursa();
+            if (tipBursa == 1 && GetMedia() >= 9.5)
+                return baza * 2 + cuantumFix;
+            return baza + cuantumFix;
+        }
+
+        public override int Tip() { return 10; }
+        public override string DenumireTip() { return "Student Bursier"; }
+    }
+
+    public class Celula
+    {
+        public Persoana p;
+        public Celula next;
+
+        public Celula() { p = null; next = null; }
+
+        public void Cit()
+        {
+            Console.WriteLine();
+            Console.WriteLine("=== ADAUGARE PERSOANA ===");
+            Console.WriteLine("Selectati tipul:");
+            Console.WriteLine("1. Student");
+            Console.WriteLine("2. Angajat");
+            Console.WriteLine("3. Student Angajat");
+            Console.WriteLine("4. Administrator");
+            Console.WriteLine("5. Contabil");
+            Console.WriteLine("6. Lector");
+            Console.WriteLine("7. Sef Laborator");
+            Console.WriteLine("8. Consultant Part-time");
+            Console.WriteLine("9. Jurist Part-time");
+            Console.WriteLine("10. Student Bursier");
+            Console.Write("Optiune: ");
+
+            int opt = int.Parse(Console.ReadLine());
+            string nume, prenume, grupa, disciplina, lab, domeniu;
+            int an, ore, anAng, grad, rap, orePred, nrStud, proj;
+            float media;
+            double pl, frac, onor, cuantum;
+            bool cert;
+
+            Console.Write("Nume: "); nume = Console.ReadLine();
+            Console.Write("Prenume: "); prenume = Console.ReadLine();
+            Console.Write("Anul nasterii: "); an = int.Parse(Console.ReadLine());
+
+            switch (opt)
+            {
+                case 1:
+                    Console.Write("Grupa: "); grupa = Console.ReadLine();
+                    Console.Write("Media: "); media = float.Parse(Console.ReadLine());
+                    p = new Student(nume, prenume, an, grupa, media);
+                    break;
+                case 2:
+                    Console.Write("Ore lucrate: "); ore = int.Parse(Console.ReadLine());
+                    Console.Write("Plata pe ora: "); pl = double.Parse(Console.ReadLine());
+                    p = new Angajat(nume, prenume, an, ore, pl);
+                    break;
+                case 3:
+                    Console.Write("Grupa: "); grupa = Console.ReadLine();
+                    Console.Write("Media: "); media = float.Parse(Console.ReadLine());
+                    Console.Write("Ore lucrate: "); ore = int.Parse(Console.ReadLine());
+                    Console.Write("Plata pe ora: "); pl = double.Parse(Console.ReadLine());
+                    p = new StudAng(nume, prenume, an, grupa, media, ore, pl);
+                    break;
+                case 4:
+                    Console.Write("Ore lucrate: "); ore = int.Parse(Console.ReadLine());
+                    Console.Write("Plata pe ora: "); pl = double.Parse(Console.ReadLine());
+                    Console.Write("Anul angajarii: "); anAng = int.Parse(Console.ReadLine());
+                    Console.Write("Grad calificare (1-5): "); grad = int.Parse(Console.ReadLine());
+                    p = new Administrator(nume, prenume, an, ore, pl, anAng, grad);
+                    break;
+                case 5:
+                    Console.Write("Ore lucrate: "); ore = int.Parse(Console.ReadLine());
+                    Console.Write("Plata pe ora: "); pl = double.Parse(Console.ReadLine());
+                    Console.Write("Rapoarte/luna: "); rap = int.Parse(Console.ReadLine());
+                    Console.Write("Certificat (1/0): "); cert = int.Parse(Console.ReadLine()) == 1;
+                    p = new Contabil(nume, prenume, an, ore, pl, rap, cert);
+                    break;
+                case 6:
+                    Console.Write("Ore lucrate: "); ore = int.Parse(Console.ReadLine());
+                    Console.Write("Plata pe ora: "); pl = double.Parse(Console.ReadLine());
+                    Console.Write("Ore predare/sapt: "); orePred = int.Parse(Console.ReadLine());
+                    Console.Write("Disciplina: "); disciplina = Console.ReadLine();
+                    p = new Lector(nume, prenume, an, ore, pl, orePred, disciplina);
+                    break;
+                case 7:
+                    Console.Write("Ore lucrate: "); ore = int.Parse(Console.ReadLine());
+                    Console.Write("Plata pe ora: "); pl = double.Parse(Console.ReadLine());
+                    Console.Write("Anul angajarii: "); anAng = int.Parse(Console.ReadLine());
+                    Console.Write("Grad calificare (1-5): "); grad = int.Parse(Console.ReadLine());
+                    Console.Write("Laborator: "); lab = Console.ReadLine();
+                    Console.Write("Studenti coordonati: "); nrStud = int.Parse(Console.ReadLine());
+                    p = new SefLaborator(nume, prenume, an, ore, pl, anAng, grad, lab, nrStud);
+                    break;
+                case 8:
+                    Console.Write("Ore lucrate: "); ore = int.Parse(Console.ReadLine());
+                    Console.Write("Plata pe ora: "); pl = double.Parse(Console.ReadLine());
+                    Console.Write("Fractiune norma (0.25/0.5/0.75): "); frac = double.Parse(Console.ReadLine());
+                    Console.Write("Domeniu expertiza: "); domeniu = Console.ReadLine();
+                    p = new ConsultantPartTime(nume, prenume, an, ore, pl, frac, domeniu);
+                    break;
+                case 9:
+                    Console.Write("Ore lucrate: "); ore = int.Parse(Console.ReadLine());
+                    Console.Write("Plata pe ora: "); pl = double.Parse(Console.ReadLine());
+                    Console.Write("Fractiune norma (0.25/0.5/0.75): "); frac = double.Parse(Console.ReadLine());
+                    Console.Write("Domeniu expertiza: "); domeniu = Console.ReadLine();
+                    Console.Write("Proiecte active: "); proj = int.Parse(Console.ReadLine());
+                    Console.Write("Onorariu/proiect: "); onor = double.Parse(Console.ReadLine());
+                    p = new JuristPartTime(nume, prenume, an, ore, pl, frac, domeniu, proj, onor);
+                    break;
+                case 10:
+                    Console.Write("Grupa: "); grupa = Console.ReadLine();
+                    Console.Write("Media: "); media = float.Parse(Console.ReadLine());
+                    Console.Write("Tip bursa (1=Perf, 2=Merit, 3=Sociala): "); grad = int.Parse(Console.ReadLine());
+                    Console.Write("Cuantum fix: "); cuantum = double.Parse(Console.ReadLine());
+                    p = new StudentBursier(nume, prenume, an, grupa, media, grad, cuantum);
+                    break;
+                default:
+                    Console.WriteLine("Tip invalid!");
+                    p = null;
+                    break;
+            }
+        }
+
+        public void Afis()
+        {
+            if (p != null)
+            {
+                Console.Write($"[{ p.DenumireTip()}] ");
+                p.Afisare();
+                Console.Write($" -> ");
+                if (p.Salariu() > 0) Console.Write($"Salariu: {p.Salariu():F2} lei");
+                if (p.Bursa() > 0) Console.Write($" | Bursa: {p.Bursa():F2} lei");
+                Console.WriteLine();
+            }
+        }
+
+        public double Consum()
+        {
+            return p != null ? (p.Salariu() + p.Bursa()) : 0;
+        }
+    }
+
+    public class Lista
+    {
+        private Celula prim;
+
+        public Lista() { prim = null; }
+
+        public void Creare()
+        {
+            Console.Write("Numar persoane: ");
+            int n = int.Parse(Console.ReadLine());
+            for (int i = 0; i < n; i++)
+                Inserare();
+        }
+
+        public void Inserare()
+        {
+            Celula nou = new Celula();
+            nou.Cit();
+            if (nou.p == null) return;
+            nou.next = prim;
+            prim = nou;
+            Console.WriteLine("Persoana adaugata cu succes!");
+        }
+
+        public void Afisare()
+        {
+            if (prim == null)
+            {
+                Console.WriteLine("Lista este goala!");
+                return;
+            }
+            Celula c = prim;
+            while (c != null)
+            {
+                c.Afis();
+                c = c.next;
+            }
+        }
+
+        public void Exclude()
+        {
+            if (prim == null)
+            {
+                Console.WriteLine("Lista este goala!");
+                return;
+            }
+            Console.Write("Nume de sters: ");
+            string numeCautat = Console.ReadLine();
+
+            Celula c = prim, prev = null;
+            while (c != null)
+            {
+                if (c.p.Nume == numeCautat)
+                {
+                    if (prev != null) prev.next = c.next;
+                    else prim = c.next;
+                    Console.WriteLine("Persoana stearsa!");
+                    return;
+                }
+                prev = c;
+                c = c.next;
+            }
+            Console.WriteLine("Persoana nu a fost gasita!");
+        }
+
+        public double Bani()
+        {
+            double total = 0;
+            Celula c = prim;
+            while (c != null)
+            {
+                total += c.Consum();
+                c = c.next;
+            }
+            return total;
+        }
+
+        public void Statistici()
+        {
+            int[] count = new int[11];
+            double[] sume = new double[11];
+            Celula c = prim;
+
+            while (c != null)
+            {
+                int t = c.p.Tip();
+                if (t >= 0 && t <= 10)
+                {
+                    count[t]++;
+                    sume[t] += c.Consum();
+                }
+                c = c.next;
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("=== STATISTICI ===");
+            string[] nume = { "Persoana", "Student", "Angajat", "Student Angajat", "Administrator", "Contabil", "Lector", "Sef Laborator", "Consultant Part-time", "Jurist Part-time", "Student Bursier" };
+            for (int i = 1; i <= 10; i++)
+            {
+                if (count[i] > 0)
+                    Console.WriteLine($"{nume[i]}: {count[i]} persoane, Total: {sume[i]:F2} lei");
+            }
+        }
+
+        public void SalvareInFisier(string fisier)
+        {
+            using (StreamWriter sw = new StreamWriter(fisier))
+            {
+                int n = 0;
+                Celula c = prim;
+                while (c != null) { n++; c = c.next; }
+                sw.WriteLine(n);
+                c = prim;
+                while (c != null)
+                {
+                    c.p.ScriereInFisier(sw);
+                    c = c.next;
+                }
+            }
+            Console.WriteLine($"Date salvate in {fisier}");
+        }
+
+        public void CitireDinFisier(string fisier)
+        {
+            if (!File.Exists(fisier))
+            {
+                Console.WriteLine("Fisierul nu exista!");
+                return;
+            }
+            using (StreamReader sr = new StreamReader(fisier))
+            {
+                int n = int.Parse(sr.ReadLine());
+                for (int i = 0; i < n; i++)
+                {
+                    string linie = sr.ReadLine();
+                    string[] date = linie.Split('|');
+                    int tip = int.Parse(date[0]);
+                    Persoana pers = null;
+                    switch (tip)
+                    {
+                        case 1: pers = new Student("", "", 0, "", 0); break;
+                        case 2: pers = new Angajat("", "", 0, 0, 0); break;
+                        case 3: pers = new StudAng("", "", 0, "", 0, 0, 0); break;
+                        case 4: pers = new Administrator("", "", 0, 0, 0, 0, 0); break;
+                        case 5: pers = new Contabil("", "", 0, 0, 0, 0, false); break;
+                        case 6: pers = new Lector("", "", 0, 0, 0, 0, ""); break;
+                        case 7: pers = new SefLaborator("", "", 0, 0, 0, 0, 0, "", 0); break;
+                        case 8: pers = new ConsultantPartTime("", "", 0, 0, 0, 0, ""); break;
+                        case 9: pers = new JuristPartTime("", "", 0, 0, 0, 0, "", 0, 0); break;
+                        case 10: pers = new StudentBursier("", "", 0, "", 0, 0, 0); break;
+                    }
+                    if (pers != null)
+                    {
+                        pers.CitireDinFisier(date);
+                        Celula nou = new Celula();
+                        nou.p = pers;
+                        nou.next = prim;
+                        prim = nou;
+                    }
+                }
+            }
+            Console.WriteLine($"Date incarcate din {fisier}");
+        }
+    }
+
+    public class Program
+    {
+        static void Main(string[] args)
+        {
+            Persoana.SetAnCurent(2026);
+            Lista p = new Lista();
+            int opt;
+
+            do
+            {
+                Console.WriteLine();
+                Console.WriteLine("====== MENIU UNIVERSITATE ======");
+                Console.WriteLine("1. Creare lista (N persoane)");
+                Console.WriteLine("2. Inserare persoana");
+                Console.WriteLine("3. Afisare toate persoanele");
+                Console.WriteLine("4. Stergere persoana dupa nume");
+                Console.WriteLine("5. Total cheltuieli (salarii+burse)");
+                Console.WriteLine("6. Statistici pe categorii");
+                Console.WriteLine("7. Salvare in fisier");
+                Console.WriteLine("8. Citire din fisier");
+                Console.WriteLine("0. Iesire");
+                Console.Write("Optiune: ");
+                opt = int.Parse(Console.ReadLine());
+
+                switch (opt)
+                {
+                    case 1: p.Creare(); break;
+                    case 2: p.Inserare(); break;
+                    case 3: p.Afisare(); break;
+                    case 4: p.Exclude(); break;
+                    case 5: Console.WriteLine($"Total cheltuieli: {p.Bani():F2} lei"); break;
+                    case 6: p.Statistici(); break;
+                    case 7: p.SalvareInFisier("date.txt"); break;
+                    case 8: p.CitireDinFisier("date.txt"); break;
+                    case 0: Console.WriteLine("La revedere!"); break;
+                    default: Console.WriteLine("Optiune invalida!"); break;
+                }
+            } while (opt != 0);
+        }
+    }
+}
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+<footer>
+    <div class="footer-continut">
+        <p class="copyright">&copy; 2026 Pelin Dragoș. Toate drepturile rezervate.</p>
+        <a href="#top" class="sus-link">Înapoi sus &uarr;</a>
+    </div>
+    </footer>
+</body>
+</html>
